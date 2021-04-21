@@ -1,0 +1,30 @@
+.main-sidebar .nav-wrapper{
+    background-color:#43425D !important
+}
+.main-sidebar .nav--no-borders .nav-item .nav-link {
+    color: white ;
+}
+/* .stats-small{
+    min-height: 10.7rem  !important;
+
+} */
+
+.card-post__image{
+    border-radius: .625rem;
+    min-height: 12.3125rem;
+}
+.card-post--1 .card-post__category {
+   top: 9.9375rem
+}
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right:5px
+  }
+  .user-cards{
+    min-height: 8.7rem;
+    overflow: hidden!important;
+    height:9.3rem
+  }

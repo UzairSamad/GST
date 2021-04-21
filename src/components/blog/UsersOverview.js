@@ -88,7 +88,7 @@ class UsersOverview extends React.Component {
   render() {
     const { title } = this.props;
     return (
-      <Card small className="h-100">
+      <Card small className="h-95">
         <CardHeader className="border-bottom">
           <h6 className="m-0">{title}</h6>
         </CardHeader>
@@ -107,7 +107,7 @@ class UsersOverview extends React.Component {
             </Col>
           </Row>
           <canvas
-            height="120"
+            height="65"
             ref={this.canvasRef}
             style={{ maxWidth: "100% !important" }}
           />

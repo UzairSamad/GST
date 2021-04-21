@@ -5,54 +5,73 @@ import { Redirect } from "react-router-dom";
 import { DefaultLayout } from "./layouts";
 
 // Route Views
-import BlogOverview from "./views/BlogOverview";
-import UserProfileLite from "./views/UserProfileLite";
-import AddNewPost from "./views/AddNewPost";
-import Errors from "./views/Errors";
-import ComponentsOverview from "./views/ComponentsOverview";
-import Tables from "./views/Tables";
-import BlogPosts from "./views/BlogPosts";
+import Dashboard from "./views/Dashboard";
+import Appointments from "./views/Appointments";
+import Users from "./views/Users";
+import Services from "./views/Services";
+import Orders from "./views/Orders";
+import PromoDeals from "./views/PromoDeals";
+import BlogPosts from "./views/CustomerSupport";
+import Products from "./views/Products";
+import Categories from "./views/Categories";
+import Settings from "./views/Settings";
 
 export default [
   {
     path: "/",
     exact: true,
     layout: DefaultLayout,
-    component: () => <Redirect to="/blog-overview" />
+    component: () => <Redirect to="/dashboard" />
   },
   {
-    path: "/blog-overview",
+    path: "/dashboard",
     layout: DefaultLayout,
-    component: BlogOverview
+    component: Dashboard
   },
   {
-    path: "/user-profile-lite",
+    path: "/appointments",
     layout: DefaultLayout,
-    component: UserProfileLite
+    component: Appointments
   },
   {
-    path: "/add-new-post",
+    path: "/users",
     layout: DefaultLayout,
-    component: AddNewPost
+    component: Users
   },
   {
-    path: "/errors",
+    path: "/services",
     layout: DefaultLayout,
-    component: Errors
+    component: Services
   },
   {
-    path: "/components-overview",
+    path: "/orders",
     layout: DefaultLayout,
-    component: ComponentsOverview
+    component: Orders
   },
   {
-    path: "/tables",
+    path: "/promo-deals",
     layout: DefaultLayout,
-    component: Tables
+    component: PromoDeals
   },
   {
-    path: "/blog-posts",
+    path: "/customer-support",
     layout: DefaultLayout,
     component: BlogPosts
-  }
+  },
+  {
+    path: "/products",
+    layout: DefaultLayout,
+    component: Products
+  },
+  {
+    path: "/cateogries",
+    layout: DefaultLayout,
+    component: Categories
+  },
+  {
+    path: "/settings",
+    layout: DefaultLayout,
+    component: Settings
+  },
+
 ];

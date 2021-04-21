@@ -1,40 +1,56 @@
 export default function() {
   return [
     {
-      title: "Blog Dashboard",
-      to: "/blog-overview",
+      title: "Dashboard",
+      to: "dashboard",
       htmlBefore: '<i class="material-icons">edit</i>',
       htmlAfter: ""
     },
     {
-      title: "Blog Posts",
+      title: "Customer Support",
       htmlBefore: '<i class="material-icons">vertical_split</i>',
-      to: "/blog-posts",
+      to: "customer-support",
     },
     {
-      title: "Add New Post",
+      title: "Products",
       htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/add-new-post",
+      to: "/products",
     },
     {
-      title: "Forms & Components",
+      title: "Cateogries",
+      htmlBefore: '<i class="material-icons">note_add</i>',
+      to: "/cateogries",
+    },
+    {
+      title: "Users",
+      htmlBefore: '<i class="material-icons">note_add</i>',
+      to: "/users",
+    },
+    {
+      title: "Order Status",
       htmlBefore: '<i class="material-icons">view_module</i>',
-      to: "/components-overview",
+      to: "/orders",
     },
     {
-      title: "Tables",
-      htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/tables",
-    },
-    {
-      title: "User Profile",
+      title: "Appointment",
       htmlBefore: '<i class="material-icons">person</i>',
-      to: "/user-profile-lite",
+      to: "/appointments",
     },
     {
-      title: "Errors",
+      title: "Services",
       htmlBefore: '<i class="material-icons">error</i>',
-      to: "/errors",
-    }
+      to: "/services",
+    },
+    {
+      title: "PromoCodes & Deals",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/promo-deals",
+    },
+    {
+      title: "Settings",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/settings",
+    },
+   
   ];
 }
