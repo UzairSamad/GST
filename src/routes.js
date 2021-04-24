@@ -15,6 +15,7 @@ import BlogPosts from "./views/CustomerSupport";
 import Products from "./views/Products";
 import Categories from "./views/Categories";
 import Settings from "./views/Settings";
+import AddService from "./views/AddService";
 
 export default [
   {
@@ -42,6 +43,11 @@ export default [
     path: "/services",
     layout: DefaultLayout,
     component: Services
+  },
+  {
+    path: "/addServices",
+    layout: DefaultLayout,
+    component: AddService
   },
   {
     path: "/orders",

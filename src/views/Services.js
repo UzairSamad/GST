@@ -11,11 +11,13 @@ import {
   Badge,
   Button
 } from "shards-react";
-
+import { Link, withRouter } from "react-router-dom"
 import PageTitle from "../components/common/PageTitle";
 
 class Services extends React.Component {
+
   constructor(props) {
+    console.log(props, "propsprops");
     super(props);
 
     this.state = {
@@ -55,7 +57,7 @@ class Services extends React.Component {
           date: "29 February 2019"
         },
         {
-          backgroundImage:  require("../images/content-management/2.jpeg"),
+          backgroundImage: require("../images/content-management/2.jpeg"),
           category: "Business",
           categoryTheme: "Highlights",
           author: "John James",
@@ -77,7 +79,7 @@ class Services extends React.Component {
           date: "29 February 2019"
         },
         {
-          backgroundImage:  require("../images/content-management/2.jpeg"),
+          backgroundImage: require("../images/content-management/2.jpeg"),
           category: "Waxing",
           categoryTheme: "warning",
           author: "John James",
@@ -88,8 +90,12 @@ class Services extends React.Component {
           date: "29 February 2019"
         },
       ]
- 
+
     };
+  }
+
+  navigate = () => {
+    this.props.history.push("/addServices")
   }
 
   render() {
@@ -100,7 +106,18 @@ class Services extends React.Component {
     return (
       <Container fluid className="main-content-container px-4">
         <Row noGutters className="page-header py-4">
-          <PageTitle sm="4" title="Services" className="text-sm-left" />
+          <Col md="4" >
+            <PageTitle sm="2" title="Services" className="text-sm-left" />
+          </Col>
+          <Col md="4">
+         
+          </Col>
+          <Col md="4" className="text-sm-right">
+            <div onClick={this.navigate}>
+              <Button >Add Service</Button>
+            </div>
+          </Col>
+
         </Row>
         <Row>
           {PostsListOne.map((post, idx) => (
@@ -110,7 +127,7 @@ class Services extends React.Component {
                   className="card-post__image"
                   style={{ backgroundImage: `url(${post.backgroundImage})` }}
                 >
-                  <p style={{color:'#FFFF'}}
+                  <p style={{ color: '#FFFF' }}
                     className={`card-post__category `}
                   >
                     {post.category}
@@ -121,10 +138,10 @@ class Services extends React.Component {
           ))}
         </Row>
 
-       
-      </Container>
+
+      </Container >
     );
   }
 }
 
-export default Services;
+export default withRouter(Services);
