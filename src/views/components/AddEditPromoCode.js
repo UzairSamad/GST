@@ -38,7 +38,7 @@ function AddPromocode(props) {
             </Row>
             <Row>
                 <Col lg="12" md="6" sm="12" className="text-md-center">
-                    <div className="drag-areaaaa text-md-center " >
+                    <div className="drag-areaaaa text-md-center "   style={{marginLeft:'30%',marginBottom:'15px'}}>
                         <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                         <header>Drag & Drop to Upload File</header>
                         <span>OR</span>

@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-left: '20%'  !important;
 }
 .drag-areaaaa.active{
   border: 2px solid #d3d3d3;

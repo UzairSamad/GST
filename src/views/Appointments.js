@@ -92,8 +92,8 @@ const Appointments = (props) => {
             })
           }
         </Col>
-        <Col md="8" className="text-md-center">
-          Select a appointment
+        <Col style={{marginTop:'15%'}} md="8" className="text-md-center">
+         Select a appointment
         </Col>
       </Row>
     </Container>

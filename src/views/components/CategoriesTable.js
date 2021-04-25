@@ -40,7 +40,7 @@ return(
 
                                     tableBody.map(row => {
                                         return (
-                                            <tr>
+                                            <tr onClick={_=>setIsOPen(true)} style={{cursor:'pointer'}}>
                                                 {
                                                     tableDisplayData.map(val => {
                                                         return (
