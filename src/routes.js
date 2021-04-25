@@ -18,8 +18,10 @@ import Settings from "./views/Settings";
 import {
   AddProduct,
   EditOrder,
-  AddService
-} from './components'
+  AddService,
+  EditAppoitment,
+  AddPromoCode
+} from './views/components'
 
 export default [
   {
@@ -47,6 +49,11 @@ export default [
     path: "/services",
     layout: DefaultLayout,
     component: Services
+  },
+  {
+    path: "/addServices",
+    layout: DefaultLayout,
+    component: AddService
   },
   {
     path: "/orders",
@@ -92,6 +99,16 @@ export default [
     path: "/add-editService",
     layout: DefaultLayout,
     component: AddService
+  },
+  {
+    path: "/edit-appointment",
+    layout: DefaultLayout,
+    component: EditAppoitment
+  },
+  {
+    path: "/addEdit-promocode",
+    layout: DefaultLayout,
+    component: AddPromoCode
   },
 
 ];

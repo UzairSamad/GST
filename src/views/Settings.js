@@ -12,7 +12,7 @@ import {
   Button
 } from "shards-react";
 
-import PageTitle from "../components/common/PageTitle";
+import PageTitle from "./components/PageTitle";
 
 class Settings extends React.Component {
 

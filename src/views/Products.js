@@ -13,8 +13,8 @@ import {
   FormInput
 } from "shards-react";
 
-import PageTitle from "../components/common/PageTitle";
-import CustomTable from "../components/CustomTable.js";
+import PageTitle from "./components/PageTitle";
+import CustomTable from "./components/CustomTable.js";
 
 
 const Products = (props) => {
@@ -94,7 +94,7 @@ const Products = (props) => {
         </Col>
       </Row>
 
-      <CustomTable props={props} onEditNavigate='/add-editproduct' tableHead={tableHeader} tableBody={tableBody} tableDisplayData={tableDisplayData} />
+      <CustomTable titleEdit='Edit Product' props={props} onEditNavigate='/add-editproduct' tableHead={tableHeader} tableBody={tableBody} tableDisplayData={tableDisplayData} />
     </Container>
   );
 }

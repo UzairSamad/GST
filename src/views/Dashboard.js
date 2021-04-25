@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col } from "shards-react";
 
-import PageTitle from "../components/common/PageTitle";
+import PageTitle from "./components/PageTitle";
 import SmallStats from "../components/common/SmallStats";
 import UsersOverview from "../components/blog/UsersOverview";
 import UsersByDevice from "../components/blog/UsersByDevice";

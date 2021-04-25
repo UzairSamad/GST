@@ -13,8 +13,8 @@ import {
   FormInput
 } from "shards-react";
 
-import PageTitle from "../components/common/PageTitle";
-import OrderStatusTable from "../components/OrderStatusTable";
+import PageTitle from "./components/PageTitle";
+import OrderStatusTable from "./components/OrderStatusTable";
 
 
 const Orders = (props) => {

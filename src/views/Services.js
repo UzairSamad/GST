@@ -12,8 +12,8 @@ import {
   Button,
   FormInput
 } from "shards-react";
-
-import PageTitle from "../components/common/PageTitle";
+import { Link, withRouter } from "react-router-dom"
+import PageTitle from "./components/PageTitle";
 
 const Services = (props) => {
   // First list of posts.
@@ -141,4 +141,4 @@ const Services = (props) => {
   );
 }
 
-export default Services;
+export default withRouter(Services);

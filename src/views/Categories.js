@@ -13,10 +13,12 @@ import {
   FormInput
 } from "shards-react";
 
-import PageTitle from "../components/common/PageTitle";
-import CategoriesTable from "../components/CategoriesTable";
+import PageTitle from "./components/PageTitle";
+import CategoriesTable from "./components/CategoriesTable";
+import AddEditCategory from "./components/AddEditCategory";
 
 const Categories = () => {
+  const [isOpen, setIsOPen] = React.useState(false)
   const tableHeader = ['#', 'Name']
   const tableDisplayData = ['id', 'name']
   const tableBody = [
@@ -59,7 +61,7 @@ const Categories = () => {
           />
         </Col>
         <Col md="2">
-          <Button theme="primary" className="mb-2 mr-1" style={{ width: '120%' }}>
+          <Button theme="primary" onClick={() => setIsOPen(true)} className="mb-2 mr-1" style={{ width: '120%' }}>
             Add
          </Button>
         </Col>
@@ -68,9 +70,10 @@ const Categories = () => {
         <CategoriesTable tableHead={tableHeader} tableBody={tableBody} tableDisplayData={tableDisplayData} />
 
       </Row>
+      <AddEditCategory data={{ name: '', id: '' }} isOpen={isOpen} onClose={_ => setIsOPen(false)} title='Add Category' />
+
     </Container>
   );
-
 
 
 }
