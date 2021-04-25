@@ -15,6 +15,10 @@ import BlogPosts from "./views/CustomerSupport";
 import Products from "./views/Products";
 import Categories from "./views/Categories";
 import Settings from "./views/Settings";
+import Login from "./views/Login";
+import SignUp from "./views/SignUp";
+import NewPassword from "./views/NewPassword";
+import ResetPassword from "./views/ResetPassword";
 import {
   AddProduct,
   EditOrder,
@@ -28,13 +32,34 @@ export default [
     path: "/",
     exact: true,
     layout: DefaultLayout,
-    component: () => <Redirect to="/dashboard" />
+    component: () => <Redirect to="/login" />
+  },
+  {
+    path: "/login",
+    layout: DefaultLayout,
+    component: Login
+  },
+  {
+    path: "/signUp",
+    layout: DefaultLayout,
+    component: SignUp
+  },
+  {
+    path: "/resetPassword",
+    layout: DefaultLayout,
+    component: ResetPassword
+  },
+  {
+    path: "/newPassword",
+    layout: DefaultLayout,
+    component: NewPassword
   },
   {
     path: "/dashboard",
     layout: DefaultLayout,
     component: Dashboard
   },
+
   {
     path: "/appointments",
     layout: DefaultLayout,

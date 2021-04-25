@@ -17,14 +17,21 @@ export default () => (
             exact={route.exact}
             component={withTracker(props => {
               return (
-                <route.layout {...props}>
-                  <route.component {...props} />
-                </route.layout>
+                <>
+                  {
+                    route.path == '/login' || route.path == '/signUp' || route.path == '/resetPassword' || route.path == '/newPassword' ?
+                      <route.component {...props} />
+                      :
+                      < route.layout {...props}>
+                        <route.component {...props} />
+                      </route.layout>}
+                </>
+
               );
             })}
           />
         );
       })}
     </div>
-  </Router>
+  </Router >
 );

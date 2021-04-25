@@ -14,11 +14,12 @@ import {
     Container,
     FormTextarea,
     Button,
-    
+
 } from "shards-react";
 
 import PageTitle from "./PageTitle";
 import "../styles/service.css"
+import Avatar from '@material-ui/core/Avatar';
 
 
 function AddService(props) {
@@ -38,13 +39,8 @@ function AddService(props) {
             </Row>
             <Row>
                 <Col lg="12" md="6" sm="12" className="text-md-center">
-                    <div className="drag-areaaaa text-md-center "  style={{marginLeft:'30%',marginBottom:'15px'}}>
-                        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                        <header>Drag & Drop to Upload File</header>
-                        <span>OR</span>
-                        <button>Browse File</button>
-                        <input type="file" hidden />
-                    </div>
+                        <Avatar alt="Remy Sharp" size='large' className="text-md-center" style={{ width: '90px', height: '90px' ,marginLeft:'40%'}} size src="https://www.pngjoy.com/pngm/186/3682484_harambe-face-sample-avatar-hd-png-download.png" />
+                        <p style={{fontSize:'20px',fontWeight:'bold'}}>David James</p>
                 </Col>
             </Row>
             <Row>

@@ -88,8 +88,8 @@ function AddProduct(props) {
                 </Col>
             </Row>
             <Row >
-                <Col sm="12" md="4">
-                    <Button style={{ width: '50%' }} theme="primary" className="mb-2 mr-1">
+                <Col sm="12" md="12" className="text-center">
+                    <Button style={{ width: '20%'  }} theme="primary" className="mb-2 mr-1">
                         Add
                   </Button>
                 </Col>

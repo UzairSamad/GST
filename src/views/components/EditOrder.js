@@ -17,6 +17,7 @@ import {
 } from "shards-react";
 
 import PageTitle from "./PageTitle";
+import Avatar from '@material-ui/core/Avatar';
 
 function EditOrder(props) {
     console.log(props,'props')
@@ -34,6 +35,12 @@ function EditOrder(props) {
         <Container fluid className="main-content-container px-4">
             <Row noGutters className="page-header py-4">
                 <PageTitle sm="4" title={`Change Order Status`} className="text-sm-left" />
+            </Row>
+            <Row>
+                <Col lg="12" md="6" sm="12" className="text-md-center">
+                        <Avatar alt="Remy Sharp" size='large' className="text-md-center" style={{ width: '90px', height: '90px' ,marginLeft:'40%',marginBottom:'-5px'}} size src="https://www.pngjoy.com/pngm/186/3682484_harambe-face-sample-avatar-hd-png-download.png" />
+                        <i class="material-icons" style={{ cursor: 'pointer',marginLeft:'-5%',marginTop:'-25px', fontSize: '20px' }}>edit</i>
+                </Col>
             </Row>
             <Row>
                 <Col sm="12" md="12">
@@ -101,8 +108,8 @@ function EditOrder(props) {
                 </Col>
             </Row>
             <Row >
-                <Col sm="12" md="4">
-                    <Button style={{ width: '50%' }} theme="primary" className="mb-2 mr-1">
+                <Col sm="12" md="12" className="text-center">
+                    <Button style={{ width: '20%' }} theme="primary" className="mb-2 mr-1">
                         Confirm
                   </Button>
                 </Col>

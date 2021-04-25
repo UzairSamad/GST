@@ -99,14 +99,29 @@ const CustomerSupport = (props) => {
           {
             showMessage ?
               <>
-              <div>
-                <p>David James</p>
-              </div>
+
+                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', borderBottom: '1px solid #0000000A', paddingBottom: '15px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'row' }}>
+
+                    <img
+                      className="user-avatar rounded-circle mr-2"
+                      src="https://www.pngjoy.com/pngm/186/3682484_harambe-face-sample-avatar-hd-png-download.png" alt="User Avatar"
+                      style={{ width: '45px', height: '45px' }}
+                    />
+                    <div>
+                      <p style={{marginBottom:'0px'}} >David James</p>
+                      <p style={{ fontSize: '14px' }}>to me</p>
+                    </div>
+
+                  </div>
+
+                  <p style={{ marginTop: '5px', alignSelf: 'flex-end', textAlign: 'flex-end' }}>12/02/2021</p>
+                </div>
                 <p>Hi,David</p>
                 <p> Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum quisquam deserunt. Odit vel sint dolor eos. Ea blanditiis animi. Quibusdam unde unde. Perspiciatis vel pariatur qui. Deleniti omnis est quae. Laboriosam numquam amet aliquid. Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum quisquam deserunt. Odit vel sint dolor eos. Ea blanditiis animi. Quibusdam unde unde. Perspiciatis vel pariatur qui. Deleniti omnis est quae. Laboriosam numquam amet aliquid.Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum</p>
                 <FormGroup>
                   <InputGroup className="mb-3">
-                    <FormTextarea  rows="5" placeholder="Reply" />
+                    <FormTextarea rows="5" placeholder="Reply" />
                   </InputGroup>
                 </FormGroup>
 
