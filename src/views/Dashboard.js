@@ -39,7 +39,6 @@ const DashBoard = ({ smallStats }) => (
             </div>
             <div style={{ display: 'flex', flexDirection: 'row' ,justifyContent:'space-between'}}>
               <p>2453</p>
-              <p>2453</p>
             </div>
           </CardBody>
         </Card>
