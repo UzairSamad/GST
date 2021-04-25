@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 
 import PageTitle from "./common/PageTitle";
 
-const OrderTable = ({ tableHead, tableBody, tableDisplayData }) => (
+const OrderTable = ({ tableHead, tableBody, tableDisplayData ,props}) => (
     <Container fluid className="main-content-container" style={{ marginLeft: '-10px' }}>
         {/* Page Header */}
         <Row>
@@ -31,7 +31,7 @@ const OrderTable = ({ tableHead, tableBody, tableDisplayData }) => (
 
                                     tableBody.map(row => {
                                         return (
-                                            <tr>
+                                            <tr style={{cursor:'pointer'}} onClick={_=>props.history.push({ pathname: "editorder", state: { data: row } })}>
                                                 {
                                                     tableDisplayData.map(val => {
                                                         return (
@@ -39,11 +39,11 @@ const OrderTable = ({ tableHead, tableBody, tableDisplayData }) => (
                                                                 : <td style={{ minWidth: '20px', paddingTop: '10px' }} >
                                                                     <span class="dot" style={{
                                                                         backgroundColor:
-                                                                            row[val] == 'Cancel' ? '#e53935' :  
-                                                                            row[val] == 'Pending' ? '#FFA000':"#388E3C"
+                                                                            row[val] == 'Cancel' ? '#e53935' :
+                                                                                row[val] == 'Pending' ? '#FFA000' : "#388E3C"
 
 
-                                                        }}></span>
+                                                                    }}></span>
                                                                     {row[val]}
                                                                 </td>
                                                         )

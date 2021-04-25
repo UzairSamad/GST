@@ -17,10 +17,14 @@ import PageTitle from "../components/common/PageTitle";
 import CustomTable from "../components/CustomTable.js";
 
 
-const Products = () => {
+const Products = (props) => {
   const tableHeader = ['#', 'Image', 'Product Name', 'Description', 'Category', 'Price']
   const tableDisplayData = ['id', 'img', 'name', 'Description', 'category', 'price']
-
+  const initialData = {
+    name: '',
+    price: '',
+    description: ''
+  }
   const tableBody = [
     {
       id: 1,
@@ -84,13 +88,13 @@ const Products = () => {
         <Col md="2">
         </Col>
         <Col md="2">
-          <Button theme="primary" className="mb-2 mr-1" style={{ width: '85%' }}>
+          <Button onClick={_ => props.history.push({ pathname: '/add-editproduct', state: { title: "Add Product",data:initialData } })} theme="primary" className="mb-2 mr-1" style={{ width: '85%' }}>
             Add
          </Button>
         </Col>
       </Row>
 
-      <CustomTable tableHead={tableHeader} tableBody={tableBody} tableDisplayData={tableDisplayData} />
+      <CustomTable props={props} onEditNavigate='/add-editproduct' tableHead={tableHeader} tableBody={tableBody} tableDisplayData={tableDisplayData} />
     </Container>
   );
 }

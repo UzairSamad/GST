@@ -17,9 +17,9 @@ import PageTitle from "../components/common/PageTitle";
 import OrderStatusTable from "../components/OrderStatusTable";
 
 
-const Orders = () => {
-  const tableHeader = ['#','Product Name','Description', 'Status', 'Price','Date']
-  const tableDisplayData = ['id', 'name', 'Description', 'status', 'price','date']
+const Orders = (props) => {
+  const tableHeader = ['#', 'Product Name', 'Description', 'Status', 'Price', 'Date']
+  const tableDisplayData = ['id', 'name', 'Description', 'status', 'price', 'date']
 
   const tableBody = [
     {
@@ -28,7 +28,7 @@ const Orders = () => {
       Description: 'Hiiiiii thisis des',
       status: 'Cancel',
       price: '$11',
-      date:'19-01-2021'
+      date: '19-01-2021'
 
     },
     {
@@ -37,7 +37,7 @@ const Orders = () => {
       Description: 'Hiiiiii thisis des',
       status: 'Cancel',
       price: '$11',
-      date:'19-01-2021'
+      date: '19-01-2021'
 
 
     },
@@ -47,7 +47,7 @@ const Orders = () => {
       Description: 'Hiiiiii thisis des',
       status: 'Delivered',
       price: '$11',
-      date:'19-01-2021'
+      date: '19-01-2021'
 
 
     },
@@ -57,7 +57,7 @@ const Orders = () => {
       Description: 'Hiiiiii thisis des',
       status: 'Pending',
       price: '$11',
-      date:'19-01-2021'
+      date: '19-01-2021'
 
 
     },
@@ -67,7 +67,7 @@ const Orders = () => {
       Description: 'Hiiiiii thisis des',
       status: 'Delivered',
       price: '$11',
-      date:'19-01-2021'
+      date: '19-01-2021'
 
 
     }
@@ -79,10 +79,10 @@ const Orders = () => {
         <Col md="6">
           <PageTitle sm="4" title="Order Status" className="text-sm-left" />
         </Col>
-       
+
       </Row>
 
-      <OrderStatusTable tableHead={tableHeader} tableBody={tableBody} tableDisplayData={tableDisplayData} />
+      <OrderStatusTable props={props} tableHead={tableHeader} tableBody={tableBody} tableDisplayData={tableDisplayData} />
     </Container>
   );
 }

@@ -15,6 +15,11 @@ import BlogPosts from "./views/CustomerSupport";
 import Products from "./views/Products";
 import Categories from "./views/Categories";
 import Settings from "./views/Settings";
+import {
+  AddProduct,
+  EditOrder,
+  AddService
+} from './components'
 
 export default [
   {
@@ -72,6 +77,21 @@ export default [
     path: "/settings",
     layout: DefaultLayout,
     component: Settings
+  },
+  {
+    path: "/add-editproduct",
+    layout: DefaultLayout,
+    component: AddProduct
+  },
+  {
+    path: "/editorder",
+    layout: DefaultLayout,
+    component: EditOrder
+  },
+  {
+    path: "/add-editService",
+    layout: DefaultLayout,
+    component: AddService
   },
 
 ];
