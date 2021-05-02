@@ -47,16 +47,26 @@ const Login = (props) => {
   }
 
   const handleSubmit = async () => {
-    let response = await userAuthResource(user_login, data)
-    console.log(response, 'responseresponseresponse')
-    // props.history.push('/dashboard')
+    if (data.username.length == 0 || data.password.length == 0) {
+      ErrorHelper.handleErrors("Please fill complete information", true)
+    }
+    else {
+      let response = await userAuthResource(user_login, data)
+      console.log(response, 'responseresponseresponse')
+      if (response.data.status == "ok") {
+        props.history.push('/dashboard')
+      }
+      else {
+        ErrorHelper.handleErrors("Something went wrong", true)
+      }
+    }
   }
   return (
     <Container fluid >
       {/* Page Header */}
       <Row >
-        <Col  md="7" sm="0" >
-          <img src={companyLogo} style={{width:"100%",height:'47.4rem',marginLeft:'-14px'}} />
+        <Col md="7" sm="0" >
+          <img src={companyLogo} style={{ width: "100%", height: '47.4rem', marginLeft: '-14px' }} />
         </Col>
         <Col md="5" style={{ marginTop: '8%', backgroundColoe: 'white' }}>
           <Row>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import ErrorHelper from '../views/components/Alert/ErrorHelper';
 
 const token = localStorage.getItem('user_token');
 
@@ -10,6 +11,7 @@ const userAuthResource = (api, data) => {
 				resolve(response);
 			})
 			.catch(error => {
+				ErrorHelper.handleErrors("something went wrong", true)
 				reject(error);
 			});
 	});

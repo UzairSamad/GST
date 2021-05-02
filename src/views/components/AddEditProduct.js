@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import {
     Row,
     Col,
@@ -15,15 +15,16 @@ import {
     FormTextarea,
     Button
 } from "shards-react";
-
+import axios from "axios"
 import PageTitle from "./PageTitle";
 import { AppContext } from '../../AppContext'
 function AddProduct(props) {
+    const imageRef = useRef()
     console.log(props, 'props')
     const { state } = props.location
     const { title, data } = state
     const context = useContext(AppContext)
-    const { createProduct        , updateProduct } = context
+    const { createProduct, updateProduct } = context
     const [productData, setProductData] = useState({
         name: data.name,
         price: data.price,
@@ -45,7 +46,20 @@ function AddProduct(props) {
         updateProduct(productData, data._id)
     }
 
+    const onChangePicture = async (e, index) => {
+        const form = new FormData();
+        form.append("file", e.target.files[0]);
+        form.append("upload_preset", "gu8ylv22");
+        try {
+            let res = await axios.post("https://api.cloudinary.com/v1_1/dhtjlhqw1/upload", form)
+            if (res) {
+                console.log(res.data.secure_url, "RESSSSSSSSSSSSSSSSS");
+            }
+        } catch (error) {
+            console.log(error, "ERRRRR=>>>>>");
+        }
 
+    };
 
     return (
         <Container fluid className="main-content-container px-4">
@@ -58,8 +72,8 @@ function AddProduct(props) {
                         <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                         <header>Drag & Drop to Upload File</header>
                         <span>OR</span>
-                        <button>Browse File</button>
-                        <input type="file" hidden />
+                        <button onClick={() => imageRef.current.click()}>Browse File</button>
+                        <input type="file" hidden ref={imageRef} onChange={(e) => onChangePicture(e)} />
                     </div>
                 </Col>
             </Row>
