@@ -17,7 +17,7 @@ import PageTitle from "./components/PageTitle";
 import CategoriesTable from "./components/CategoriesTable";
 import AddEditCategory from "./components/AddEditCategory";
 import { AppContext } from '../AppContext'
-
+import ErrorHelper from './../views/components/Alert/ErrorHelper'
 const Categories = () => {
   const [isOpen, setIsOPen] = React.useState(false)
   const [categoryName, setCategoryName] = React.useState('')
@@ -60,8 +60,14 @@ const Categories = () => {
 
   ])
   const handleCreateCategory = () => {
-    createCategory({ name: categoryName })
-    setCategoryName('')
+    if (categoryName !== '') {
+      createCategory({ name: categoryName })
+      setCategoryName('')
+
+
+  } else {
+      ErrorHelper.handleErrors('Category Name is required', true)
+  }
   }
   return (
     <Container fluid className="main-content-container px-4">

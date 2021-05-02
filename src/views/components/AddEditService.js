@@ -20,6 +20,7 @@ import PageTitle from "./PageTitle";
 import "../styles/service.css"
 import { AppContext } from '../../AppContext'
 import axios from "axios"
+import ErrorHelper from '../components/Alert/ErrorHelper'
 
 
 
@@ -43,7 +44,14 @@ function EditAppoitment(props) {
     })
 
     const handleEdit = () => {
-        updateService(productData, data._id)
+        if (data.name == '') {
+            ErrorHelper.handleErrors('Service Name is required', true)
+        } else if (data.price == '') {
+            ErrorHelper.handleErrors('Service Price is required', true)
+
+        } else {
+            updateService(productData, data._id)
+        }
     }
 
     const handleSubmit = () => {
@@ -54,8 +62,14 @@ function EditAppoitment(props) {
             discount: productData.discount,
             description: productData.description
         }
-        console.log(data, 'dataaaaaaaaaaa')
-        createService(data)
+        if (data.name == '') {
+            ErrorHelper.handleErrors('Service Name is required', true)
+        } else if (data.price == ' ') {
+            ErrorHelper.handleErrors('Service Price is required', true)
+
+        } else {
+            createService(data)
+        }
     }
     const onChangePicture = async (e, index) => {
         const form = new FormData();
@@ -92,8 +106,8 @@ function EditAppoitment(props) {
                         </div>
                         :
                         <div style={{ width: '50%', marginLeft: '25%' }}>
-                            <img style={{ width: '80px', height: '80px' }} src={productData.image} />
-                            <p onClick={() => imageRef.current.click()} style={{ cursor: 'pointer', textAlign: 'right' }}>
+                            <img style={{ width: '150px', height: '150px' }} src={productData.image} />
+                            <p onClick={() => imageRef.current.click()} style={{ cursor: 'pointer', marginLeft: '200px' }}>
                                 <i class="material-icons">edit</i>
                             </p>
                             <input type="file" hidden ref={imageRef} onChange={(e) => onChangePicture(e)} />
@@ -119,6 +133,14 @@ function EditAppoitment(props) {
                                     <label htmlFor="Price">Price</label>
                                     <InputGroup className="mb-3">
                                         <FormInput value={productData.price} onChange={e => setProductData({ ...productData, price: e.target.value })} placeholder="Price" />
+                                    </InputGroup>
+                                </FormGroup>
+                            </Col>
+                            <Col sm="12" md="4">
+                                <FormGroup>
+                                    <label htmlFor="Price">Discount</label>
+                                    <InputGroup className="mb-3">
+                                        <FormInput value={productData.discount} onChange={e => setProductData({ ...productData, discount: e.target.value })} placeholder="Discount" />
                                     </InputGroup>
                                 </FormGroup>
                             </Col>

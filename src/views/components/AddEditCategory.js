@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Button, Modal, ModalBody, ModalHeader, Row, Col, InputGroup, FormInput, FormGroup } from "shards-react";
 import { AppContext } from '../../AppContext'
 import Loader from '../components/Loader'
+import ErrorHelper from '../components/Alert/ErrorHelper'
 
 const AddEditCategory = (props) => {
     const { isOpen, onClose, title, data } = props
@@ -14,9 +15,15 @@ const AddEditCategory = (props) => {
     }, [data.name])
 
     const handleEdit = () => {
-        updateCategory({ name: name }, data._id)
+        if (name !== '') {
+            updateCategory({ name: name }, data._id)
+            onClose()
+
+
+        } else {
+            ErrorHelper.handleErrors('Category Name is required', true)
+        }
         // setIsop
-        onClose()
     }
     return (
         <div>

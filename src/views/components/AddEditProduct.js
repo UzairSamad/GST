@@ -108,8 +108,8 @@ console.log(data,'datadata')
                         </div>
                         :
                         <div style={{ width: '50%', marginLeft: '25%' }}>
-                            <img style={{ width: '80px', height: '80px' }} src={productData.image} />
-                            <p onClick={() => imageRef.current.click()} style={{ cursor: 'pointer', textAlign: 'right' }}>
+                            <img style={{ width: '150px', height: '150px' }} src={productData.image} />
+                            <p onClick={() => imageRef.current.click()} style={{ cursor: 'pointer', marginLeft: '200px' }}>
                                 <i class="material-icons">edit</i>
                             </p>
                             <input type="file" hidden ref={imageRef} onChange={(e) => onChangePicture(e)} />
