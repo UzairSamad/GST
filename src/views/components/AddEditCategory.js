@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Modal, ModalBody, ModalHeader, Row, Col, InputGroup, FormInput, FormGroup } from "shards-react";
-
+import { AppContext } from '../../AppContext'
+import Loader from '../components/Loader'
 
 const AddEditCategory = (props) => {
     const { isOpen, onClose, title, data } = props
-    const [name, setName] = React.useState(data.name)
+    console.log(data, 'datadatadata')
+    const [name, setName] = React.useState('')
+    const context = React.useContext(AppContext)
+    const { updateCategory, isLoading } = context
+    useEffect(() => {
+        setName(data.name)
+    }, [data.name])
+
+    const handleEdit = () => {
+        updateCategory({ name: name }, data._id)
+        // setIsop
+        onClose()
+    }
     return (
         <div>
+            <Loader isLoading={isLoading} />
             <Modal size="md" open={isOpen} toggle={onClose}>
                 <ModalHeader>{title}</ModalHeader>
                 <ModalBody>
@@ -15,7 +29,7 @@ const AddEditCategory = (props) => {
                             <FormGroup>
                                 <label htmlFor="Category Name">Category Name</label>
                                 <InputGroup className="mb-3">
-                                    <FormInput value={name} placeholder="Category Name" />
+                                    <FormInput onChange={e => setName(e.target.value)} value={name} placeholder="Category Name" />
                                 </InputGroup>
                             </FormGroup>
                         </Col>
@@ -23,12 +37,12 @@ const AddEditCategory = (props) => {
                     </Row>
                     <Row>
                         <Col sm="12" md="4">
-                            <Button theme="primary" className="mb-2 mr-1" onClick={_=>onClose()}>
+                            <Button theme="primary" className="mb-2 mr-1" onClick={_ => onClose()}>
                                 Cancel
                             </Button>
                         </Col>
                         <Col sm="12" md="4">
-                            <Button  theme="primary" className="mb-2 mr-1">
+                            <Button theme="primary" onClick={_ => handleEdit()} className="mb-2 mr-1">
                                 Save
                             </Button>
                         </Col>

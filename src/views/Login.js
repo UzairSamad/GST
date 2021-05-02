@@ -1,6 +1,8 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
 import React from "react";
+import { useForm } from 'react-hook-form';
+
 import {
   Container,
   Row,
@@ -18,7 +20,11 @@ import {
 } from "shards-react";
 
 import companyLogo from '../images/image.png'
-
+import { userAuthResource } from '../WebApiServices/SimpleApiCalls'
+import { user_login } from '../WebApiServices/WebServices'
+import ErrorHelper from './components/Alert/ErrorHelper.js';
+import SuccessHelper from './components/Alert/successHelper';
+import Loader from './components/Loader';
 
 const Login = (props) => {
   const [state, setState] = React.useState({
@@ -26,18 +32,31 @@ const Login = (props) => {
     lemon: false,
     kiwi: false
   })
-  const handleChange = (e, fruit) => {
+
+  const [data, setData] = React.useState({
+    username: '',
+    password: ""
+  })
+
+
+
+  const handleRember = (e, fruit) => {
     const newState = {};
     newState[fruit] = !state[fruit];
     setState({ ...state, ...newState });
   }
 
+  const handleSubmit = async () => {
+    let response = await userAuthResource(user_login, data)
+    console.log(response, 'responseresponseresponse')
+    // props.history.push('/dashboard')
+  }
   return (
     <Container fluid >
       {/* Page Header */}
       <Row >
-        <Col  md="7" sm="0"  >
-          <img src={companyLogo} style={{width:"100%",height:'43.4rem',marginLeft:'-14px'}} />
+        <Col md="7" sm="0"  >
+          <img src={companyLogo} style={{ width: "100%", height: '43.4rem', marginLeft: '-14px' }} />
         </Col>
         <Col md="5" style={{ marginTop: '8%', backgroundColoe: 'white' }}>
           <Row>
@@ -52,7 +71,7 @@ const Login = (props) => {
             <Col sm="12" md="6" className='text-center'>
               <FormGroup>
                 <InputGroup className="mb-3">
-                  <FormInput placeholder="Username" />
+                  <FormInput placeholder="Username" onChange={(e) => { setData({ ...data, username: e.target.value }) }} value={data.username} />
                 </InputGroup>
               </FormGroup>
             </Col>
@@ -62,7 +81,7 @@ const Login = (props) => {
             <Col sm="12" md="6" className='text-center'>
               <FormGroup>
                 <InputGroup className="mb-3">
-                  <FormInput type='password' placeholder="Password" />
+                  <FormInput type='password' placeholder="Password" onChange={(e) => { setData({ ...data, password: e.target.value }) }} value={data.password} />
                 </InputGroup>
               </FormGroup>
             </Col>
@@ -73,24 +92,24 @@ const Login = (props) => {
               <FormCheckbox
                 checked={state.lemon}
                 className="ml-3"
-                onChange={e => handleChange(e, "lemon")}
+                onChange={e => handleRember(e, "lemon")}
               >
                 Remember Me
              </FormCheckbox>
             </Col>
             <Col sm="12" md="3" className='text-center'>
-              <p onClick={_=>props.history.push('/resetPassword')} style={{ fontSize: '13px', fontWeight: "normal", textAlign: 'center', marginTop: -'20px', marginLeft: '-12px' }}>Forge Password</p>
+              <p onClick={_ => props.history.push('/resetPassword')} style={{ fontSize: '13px', fontWeight: "normal", textAlign: 'center', marginTop: -'20px', marginLeft: '-12px' }}>Forge Password</p>
             </Col>
           </Row>
           <Row>
             <Col sm="0" md="3"></Col>
             <Col sm="12" md="3" className='text-center'>
-              <Button style={{ width: '90%', backgroundColor: '#43425D', color: '#FFF', bordercolor: '#FFF' }} className="mb-2" onClick={_=>props.history.push('/dashboard')}>
+              <Button style={{ width: '90%', backgroundColor: '#43425D', color: '#FFF', bordercolor: '#FFF' }} className="mb-2" onClick={handleSubmit}>
                 Login
                 </Button>
             </Col>
             <Col sm="12" md="3" className='text-center ml-3'>
-              <Button onClick={_=>props.history.push('/signUp')} style={{ width: '90%', backgroundColor: '#FFF', color: '#43425D', bordercolor: '#FFF' }} className="mb-2 mr-1">
+              <Button onClick={_ => props.history.push('/signUp')} style={{ width: '90%', backgroundColor: '#FFF', color: '#43425D', bordercolor: '#FFF' }} className="mb-2 mr-1">
                 Sign Up
               </Button>
             </Col>
