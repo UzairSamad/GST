@@ -18,32 +18,51 @@ import {
 import axios from "axios"
 import PageTitle from "./PageTitle";
 import { AppContext } from '../../AppContext'
+import ErrorHelper from '../components/Alert/ErrorHelper'
 function AddProduct(props) {
     const imageRef = useRef()
     console.log(props, 'props')
     const { state } = props.location
     const { title, data } = state
     const context = useContext(AppContext)
-    const { createProduct, updateProduct } = context
+    const { createProduct, updateProduct, categories } = context
     const [productData, setProductData] = useState({
         name: data.name,
         price: data.price,
-        description: data.description
+        description: data.description,
+        image: data.image,
+        category: data.category,
+        discount: data.discount
     })
     const handleCreate = () => {
         let data = {
             name: productData.name,
-            image: "adrhtadasdsadtesttttttt",
+            image: productData.image,
             price: productData.price,
             discount: 2.00,
             description: productData.description,
-            category: "men"
+            category: productData.category
         }
-        createProduct(data)
+        if (data.name == '') {
+            ErrorHelper.handleErrors('Product Name is required', true)
+        } else if (data.price == ' ') {
+            ErrorHelper.handleErrors('Product Price is required', true)
+
+        } else {
+            createProduct(data)
+
+        }
     }
 
     const handleEdit = () => {
-        updateProduct(productData, data._id)
+        if (data.name == '') {
+            ErrorHelper.handleErrors('Product Name is required', true)
+        } else if (data.price == ' ') {
+            ErrorHelper.handleErrors('Product Price is required', true)
+
+        } else {
+            updateProduct(productData, data._id)
+        }
     }
 
     const onChangePicture = async (e, index) => {
@@ -54,6 +73,7 @@ function AddProduct(props) {
             let res = await axios.post("https://api.cloudinary.com/v1_1/dhtjlhqw1/upload", form)
             if (res) {
                 console.log(res.data.secure_url, "RESSSSSSSSSSSSSSSSS");
+                setProductData({ ...productData, image: res.data.secure_url })
             }
         } catch (error) {
             console.log(error, "ERRRRR=>>>>>");
@@ -68,13 +88,25 @@ function AddProduct(props) {
             </Row>
             <Row>
                 <Col lg="12" md="6" sm="12" className="text-md-center">
-                    <div className="drag-areaaaa text-md-center " style={{ marginLeft: '30%', marginBottom: '15px' }}>
-                        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                        <header>Drag & Drop to Upload File</header>
-                        <span>OR</span>
-                        <button onClick={() => imageRef.current.click()}>Browse File</button>
-                        <input type="file" hidden ref={imageRef} onChange={(e) => onChangePicture(e)} />
-                    </div>
+                    {productData.image == null ?
+                        <div className="drag-areaaaa text-md-center " style={{ marginLeft: '30%', marginBottom: '15px' }}>
+
+                            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                            <header>Drag & Drop to Upload File</header>
+                            <span>OR</span>
+                            <button onClick={() => imageRef.current.click()}>Browse File</button>
+                            <input type="file" hidden ref={imageRef} onChange={(e) => onChangePicture(e)} />
+                        </div>
+                        :
+                        <div style={{ width: '50%', marginLeft: '25%' }}>
+                            <img style={{ width: '80px', height: '80px' }} src={productData.image} />
+                            <p onClick={() => imageRef.current.click()} style={{ cursor: 'pointer', textAlign: 'right' }}>
+                                <i class="material-icons">edit</i>
+                            </p>
+                            <input type="file" hidden ref={imageRef} onChange={(e) => onChangePicture(e)} />
+
+                        </div>
+                    }
                 </Col>
             </Row>
             <Row>
@@ -99,11 +131,21 @@ function AddProduct(props) {
                             </Col>
                             <Col sm="12" md="4">
                                 <FormGroup>
+                                    <label htmlFor="Price">Discount</label>
+                                    <InputGroup className="mb-3">
+                                        <FormInput value={productData.discount} onChange={e => setProductData({ ...productData, discount: e.target.value })} placeholder="Discount" />
+                                    </InputGroup>
+                                </FormGroup>
+                            </Col>
+                            <Col sm="12" md="4">
+                                <FormGroup>
                                     <label htmlFor="Product Name">Category</label>
-                                    <FormSelect>
-                                        <option>Choose ...</option>
-                                        <option>Test</option>
-                                        <option>Test 1</option>
+                                    <FormSelect onChange={e => setProductData({ ...productData, category: e.target.value })} value={productData.category}>
+                                        <option>Select Category</option>
+                                        {categories.map(val => <option>{val.name}</option>)}
+                                        {/* <option>Choose ...</option>
+                                            <option>Test</option>
+                                            <option>Test 1</option> */}
                                     </FormSelect>
                                 </FormGroup>
                             </Col>
@@ -135,7 +177,7 @@ function AddProduct(props) {
                     }
                 </Col>
             </Row>
-        </Container>
+        </Container >
     );
 }
 

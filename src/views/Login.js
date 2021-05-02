@@ -51,13 +51,11 @@ const Login = (props) => {
       ErrorHelper.handleErrors("Please fill complete information", true)
     }
     else {
-      let response = await userAuthResource(user_login, data)
-      console.log(response, 'responseresponseresponse')
-      if (response.data.status == "ok") {
+      try {
+        let response = await userAuthResource(user_login, data)
         props.history.push('/dashboard')
-      }
-      else {
-        ErrorHelper.handleErrors("Something went wrong", true)
+      } catch (error) {
+        ErrorHelper.handleErrors(error.response.data.error, true)
       }
     }
   }

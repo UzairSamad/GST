@@ -135,6 +135,8 @@ const AppProvider = props => {
 
     const deleteCategory = async (id) => {
         try {
+            let res = await deleteResource(`${delete_category},${id}`)
+            successHelper.handleSuccess('Category Deleted Succesfully')
             setIsloading(false);
             getCategories()
 
@@ -144,8 +146,11 @@ const AppProvider = props => {
         }
     }
 
-    const deleteProduct = async (data, id) => {
+    const deleteProduct = async (id) => {
         try {
+            let res = await deleteResource(`${delete_product}/${id}`)
+            successHelper.handleSuccess('Product Deleted Succesfully')
+            getProduct()
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);

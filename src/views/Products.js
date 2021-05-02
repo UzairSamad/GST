@@ -17,12 +17,13 @@ import PageTitle from "./components/PageTitle";
 import CustomTable from "./components/CustomTable.js";
 import { AppContext } from '../AppContext'
 import Loader from './components/Loader'
+import { delete_product } from "../WebApiServices/WebServices";
 
 const Products = (props) => {
   const tableHeader = [ 'Image', 'Product Name', 'Description', 'Category', 'Price']
-  const tableDisplayData = [ 'img', 'name', 'description', 'category', 'price']
+  const tableDisplayData = [ 'image', 'name', 'description', 'category', 'price']
   const context = useContext(AppContext)
-  const { getProduct, isLoading ,products } = context
+  const { getProduct, isLoading ,products,deleteProduct } = context
   const initialData = {
     name: '',
     price: '',
@@ -34,6 +35,7 @@ const Products = (props) => {
     getProduct()
 
   }, [])
+  
   return (
     <Container fluid className="main-content-container px-4">
       {/* Page Header */}
@@ -57,7 +59,7 @@ const Products = (props) => {
         </Col>
       </Row>
 
-      <CustomTable titleEdit='Edit Product' props={props} onEditNavigate='/add-editproduct' tableHead={tableHeader} tableBody={products} tableDisplayData={tableDisplayData} />
+      <CustomTable titleEdit='Edit Product' handleDelete={deleteProduct} props={props} onEditNavigate='/add-editproduct' tableHead={tableHeader} tableBody={products} tableDisplayData={tableDisplayData} />
     </Container>
   );
 }
