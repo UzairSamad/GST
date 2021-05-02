@@ -50,6 +50,9 @@ const AppProvider = props => {
     }
     const getServices = async () => {
         try {
+            let res = await getResource(get_services);
+            console.log(res, 'resssssssssss')
+            setServices(res.data.data)
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
@@ -61,6 +64,8 @@ const AppProvider = props => {
         try {
             let res = await createResource(`${create_product}`, data)
             successHelper.handleSuccess('Product Created Successfully', true);
+            window.location = '/products'
+
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
@@ -72,6 +77,8 @@ const AppProvider = props => {
         try {
             let res = await createResource(create_category, data)
             successHelper.handleSuccess('Category Created Successfully', true);
+            window.location = '/cateogries'
+
             getCategories()
             setIsloading(false);
         } catch (error) {
@@ -85,6 +92,7 @@ const AppProvider = props => {
             let res = await createResource(`${create_service}`, data)
 
             successHelper.handleSuccess('Service Created Successfully', true);
+            window.location = '/services'
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
@@ -98,6 +106,7 @@ const AppProvider = props => {
             let res = await updateResource(`${update_product}/${id}`, data)
 
             successHelper.handleSuccess('Product Updated Successfully', true);
+            window.location = '/products'
 
             setIsloading(false);
         } catch (error) {
@@ -112,6 +121,7 @@ const AppProvider = props => {
 
             successHelper.handleSuccess('Category Updated Successfully', true);
             getCategories()
+            window.location = '/cateogries'
 
             setIsloading(false);
         } catch (error) {
@@ -125,6 +135,7 @@ const AppProvider = props => {
             let res = await updateResource(`${update_service}/${id}`, data)
 
             successHelper.handleSuccess('Service Updated Successfully', true);
+            window.location = '/services'
 
             setIsloading(false);
         } catch (error) {

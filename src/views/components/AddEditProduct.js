@@ -39,7 +39,7 @@ function AddProduct(props) {
             name: productData.name,
             image: productData.image,
             price: productData.price,
-            discount: 2.00,
+            discount: productData.discount,
             description: productData.description,
             category: productData.category
         }
@@ -55,13 +55,22 @@ function AddProduct(props) {
     }
 
     const handleEdit = () => {
+        let data = {
+            name: productData.name,
+            image: productData.image,
+            price: productData.price,
+            discount: productData.discount,
+            description: productData.description,
+            category: productData.category
+        }
         if (data.name == '') {
             ErrorHelper.handleErrors('Product Name is required', true)
         } else if (data.price == ' ') {
             ErrorHelper.handleErrors('Product Price is required', true)
 
         } else {
-            updateProduct(productData, data._id)
+
+            updateProduct(data, data._id)
         }
     }
 

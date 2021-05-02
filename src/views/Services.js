@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   Row,
@@ -18,9 +18,11 @@ import { AppContext } from './../AppContext'
 const Services = (props) => {
   // First list of posts.
   const initialData = {
-    title: '',
+    name:'',
+    image: "",
     price: '',
-    body: ''
+    discount: '',
+    description: ''
   }
   const context = useContext(AppContext)
   const {
@@ -102,6 +104,11 @@ const Services = (props) => {
       price: '$20'
     },
   ])
+
+  console.log(services,'servicesservicesservices')
+  useEffect(()=>{
+    getServices()
+  },[])
   return (
     <Container fluid className="main-content-container px-4">
       <Row noGutters className="page-header py-4">
@@ -123,7 +130,7 @@ const Services = (props) => {
         </Col>
       </Row>
       <Row>
-        {PostsListOne.map((post, idx) => (
+        {services.map((post, idx) => (
           <Col lg="4" md="6" sm="12" className="mb-4" key={idx}>
             <Card
               style={{ cursor: 'pointer' }}
@@ -131,12 +138,12 @@ const Services = (props) => {
               small className="card-post card-post--1">
               <div
                 className="card-post__image"
-                style={{ backgroundImage: `url(${post.backgroundImage})` }}
+                style={{ backgroundImage: `url(${post.image})` }}
               >
                 <p style={{ color: '#FFFF' }}
                   className={`card-post__category `}
                 >
-                  {post.category}
+                  {post.name}
                 </p>
               </div>
             </Card>
