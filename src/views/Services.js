@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Container,
   Row,
@@ -14,7 +14,7 @@ import {
 } from "shards-react";
 import { Link, withRouter } from "react-router-dom"
 import PageTitle from "./components/PageTitle";
-
+import { AppContext } from './../AppContext'
 const Services = (props) => {
   // First list of posts.
   const initialData = {
@@ -22,6 +22,12 @@ const Services = (props) => {
     price: '',
     body: ''
   }
+  const context = useContext(AppContext)
+  const {
+    services,
+    getServices,
+    createService,
+    updateService } = context
   const [PostsListOne, setPostOneList] = useState([
     {
       backgroundImage: require("../images/content-management/1.jpeg"),
@@ -33,7 +39,7 @@ const Services = (props) => {
       body:
         "However venture pursuit he am mr cordial. Forming musical am hearing studied be luckily. But in for determine what would see...",
       date: "28 February 2019",
-      price:'$20'
+      price: '$20'
     },
     {
       backgroundImage: require("../images/content-management/2.jpeg"),
@@ -45,7 +51,7 @@ const Services = (props) => {
       body:
         "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
       date: "29 February 2019",
-      price:'$20'
+      price: '$20'
     },
     {
       backgroundImage: require("../images/content-management/3.jpeg"),
@@ -57,7 +63,7 @@ const Services = (props) => {
       body:
         "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
       date: "29 February 2019",
-      price:'$20'
+      price: '$20'
     },
     {
       backgroundImage: require("../images/content-management/2.jpeg"),
@@ -69,7 +75,7 @@ const Services = (props) => {
       body:
         "How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved ready road market resolution...",
       date: "29 February 2019",
-      price:'$20'
+      price: '$20'
     },
     {
       backgroundImage: require("../images/content-management/1.jpeg"),
@@ -81,7 +87,7 @@ const Services = (props) => {
       body:
         "How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved ready road market resolution...",
       date: "29 February 2019",
-      price:'$20'
+      price: '$20'
     },
     {
       backgroundImage: require("../images/content-management/2.jpeg"),
@@ -93,7 +99,7 @@ const Services = (props) => {
       body:
         "How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved ready road market resolution...",
       date: "29 February 2019",
-      price:'$20'
+      price: '$20'
     },
   ])
   return (
