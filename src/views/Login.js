@@ -36,8 +36,8 @@ const Login = (props) => {
     <Container fluid >
       {/* Page Header */}
       <Row >
-        <Col  md="7" sm="0"  >
-          <img src={companyLogo} style={{width:"100%",height:'43.4rem',marginLeft:'-14px'}} />
+        <Col  md="7" sm="0" >
+          <img src={companyLogo} style={{width:"100%",height:'47.4rem',marginLeft:'-14px'}} />
         </Col>
         <Col md="5" style={{ marginTop: '8%', backgroundColoe: 'white' }}>
           <Row>
