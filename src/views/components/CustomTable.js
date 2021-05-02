@@ -54,7 +54,7 @@ const CustomTable = ({ tableHead, tableBody, tableDisplayData, onEditNavigate, p
 
                                         tableBody.map(row => {
                                             return (
-                                                <tr style={{cursor:'pointer'}} onClick={_=>handleEdit(row)}>
+                                                <tr style={{cursor:'pointer'}} >
                                                     {
                                                         tableDisplayData.map(val => {
                                                             return (

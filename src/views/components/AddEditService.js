@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
     Row,
     Col,
@@ -18,17 +18,34 @@ import {
 
 import PageTitle from "./PageTitle";
 import "../styles/service.css"
+import { AppContext } from '../../AppContext'
 
 
 function EditAppoitment(props) {
     console.log(props, 'props')
     const { state } = props.location
     const { title, data } = state
+    const context = useContext(AppContext)
+    const {
+        createService,
+        updateService,
+    } = context
     const [productData, setProductData] = useState({
-        name: data.title,
+
+        name: data.name,
+        image: "adrhtadasdsadtesttttttt",
         price: data.price,
-        description: data.body
+        discount: data.discount,
+        description: data.description
     })
+
+    const handleEdit = () => {
+        updateService(productData, data._id)
+    }
+
+    const handleSubmit = () => {
+        createService(productData)
+    }
 
     return (
         <Container fluid className="main-content-container px-4">
@@ -37,7 +54,7 @@ function EditAppoitment(props) {
             </Row>
             <Row>
                 <Col lg="12" md="6" sm="12" className="text-md-center">
-                    <div className="drag-areaaaa text-md-center "   style={{marginLeft:'30%',marginBottom:'15px'}}>
+                    <div className="drag-areaaaa text-md-center " style={{ marginLeft: '30%', marginBottom: '15px' }}>
                         <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                         <header>Drag & Drop to Upload File</header>
                         <span>OR</span>
@@ -82,9 +99,13 @@ function EditAppoitment(props) {
             </Row>
             <Row >
                 <Col className="text-md-center text-sm-center " sm="12" md="12">
-                    <Button style={{ width: '20%' }} theme="primary" className="mb-2 mr-1">
+                    {title == 'Add Service' ? <Button onClick={handleSubmit} style={{ width: '20%' }} theme="primary" className="mb-2 mr-1">
                         Add
                   </Button>
+                        :
+                        <Button onClick={handleEdit} style={{ width: '20%' }} theme="primary" className="mb-2 mr-1">
+                            Edit
+                  </Button>}
                 </Col>
             </Row>
         </Container>

@@ -16,11 +16,21 @@ import {
 import PageTitle from "./components/PageTitle";
 import CategoriesTable from "./components/CategoriesTable";
 import AddEditCategory from "./components/AddEditCategory";
+import { AppContext } from '../AppContext'
 
 const Categories = () => {
   const [isOpen, setIsOPen] = React.useState(false)
-  const tableHeader = ['#', 'Name']
-  const tableDisplayData = ['id', 'name']
+  const [categoryName, setCategoryName] = React.useState('')
+  const contextt = React.useContext(AppContext)
+  const {
+    getCategories,
+    createCategory,
+    updateCategory,
+    deleteCategory,
+    categories
+  } = contextt
+  const tableHeader = ['Name']
+  const tableDisplayData = ['name']
   const tableBody = [
     {
       id: 1,
@@ -43,6 +53,16 @@ const Categories = () => {
       name: 'Small Wig Wig  Wig Wig 5',
     }
   ]
+
+  React.useEffect(() => {
+    getCategories()
+  }, [
+
+  ])
+  const handleCreateCategory = () => {
+    createCategory({ name: categoryName })
+    setCategoryName('')
+  }
   return (
     <Container fluid className="main-content-container px-4">
       {/* Page Header */}
@@ -58,19 +78,21 @@ const Categories = () => {
             type="category"
             placeholder="Create Category"
             style={{ width: '100%' }}
+            value={categoryName}
+            onChange={e => { setCategoryName(e.target.value) }}
           />
         </Col>
         <Col md="2">
-          <Button theme="primary" onClick={() => setIsOPen(true)} className="mb-2 mr-1" style={{ width: '120%' }}>
+          <Button theme="primary" onClick={handleCreateCategory} className="mb-2 mr-1" style={{ width: '120%' }}>
             Add
          </Button>
         </Col>
       </Row>
       <Row style={{ marginLeft: '10px' }}>
-        <CategoriesTable tableHead={tableHeader} tableBody={tableBody} tableDisplayData={tableDisplayData} />
+        <CategoriesTable tableHead={tableHeader} tableBody={categories} tableDisplayData={tableDisplayData} />
 
       </Row>
-      <AddEditCategory data={{ name: '', id: '' }} isOpen={isOpen} onClose={_ => setIsOPen(false)} title='Add Category' />
+      {/* <AddEditCategory data={{ name: '', id: '' }} isOpen={isOpen} onClose={_ => setIsOPen(false)} title='Add Category' /> */}
 
     </Container>
   );
