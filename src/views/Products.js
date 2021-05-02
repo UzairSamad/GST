@@ -23,7 +23,7 @@ const Products = (props) => {
   const tableHeader = [ 'Image', 'Product Name', 'Description', 'Category', 'Price']
   const tableDisplayData = [ 'image', 'name', 'description', 'category', 'price']
   const context = useContext(AppContext)
-  const { getProduct, isLoading ,products,deleteProduct } = context
+  const { getProduct, isLoading ,products,deleteProduct,getCategories } = context
   const initialData = {
     name: '',
     price: '',
@@ -33,6 +33,7 @@ const Products = (props) => {
 
   useEffect(() => {
     getProduct()
+    getCategories()
 
   }, [])
   

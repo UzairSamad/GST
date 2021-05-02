@@ -32,7 +32,8 @@ function AddProduct(props) {
         description: data.description,
         image: data.image,
         category: data.category,
-        discount: data.discount
+        discount: data.discount,
+        id:data._id
     })
     const handleCreate = () => {
         let data = {
@@ -53,7 +54,7 @@ function AddProduct(props) {
 
         }
     }
-
+console.log(data,'datadata')
     const handleEdit = () => {
         let data = {
             name: productData.name,
@@ -69,8 +70,7 @@ function AddProduct(props) {
             ErrorHelper.handleErrors('Product Price is required', true)
 
         } else {
-
-            updateProduct(data, data._id)
+            updateProduct(data, productData.id)
         }
     }
 
