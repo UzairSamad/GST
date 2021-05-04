@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from 'react-hook-form';
-
+import './login.css'
 import {
   Container,
   Row,
@@ -63,8 +63,8 @@ const Login = (props) => {
     <Container fluid >
       {/* Page Header */}
       <Row >
-        <Col md="7" sm="0" >
-          <img src={companyLogo} style={{ width: "100%", height: '47.4rem', marginLeft: '-14px' }} />
+        <Col md="7" sm="12" >
+          <img style={{}} src={companyLogo}   />
         </Col>
         <Col md="5" style={{ marginTop: '8%', backgroundColoe: 'white' }}>
           <Row>
@@ -79,7 +79,7 @@ const Login = (props) => {
             <Col sm="12" md="6" className='text-center'>
               <FormGroup>
                 <InputGroup className="mb-3">
-                  <FormInput placeholder="Username" onChange={(e) => { setData({ ...data, username: e.target.value }) }} value={data.username} />
+                  <FormInput placeholder="Username"  onChange={(e) => { setData({ ...data, username: e.target.value }) }} value={data.username} />
                 </InputGroup>
               </FormGroup>
             </Col>
@@ -94,30 +94,32 @@ const Login = (props) => {
               </FormGroup>
             </Col>
           </Row>
-          <Row>
-            <Col sm="12" md="2"></Col>
-            <Col sm="12" md="4" className="ml-5">
+          <Row >
+            <Col sm="12" md="3"  >
+            </Col>
+            <Col sm="12" md="3">
               <FormCheckbox
                 checked={state.lemon}
-                className="ml-3"
+                // className="ml-2 "
+                style={{ fontSize: '13px' }}
                 onChange={e => handleRember(e, "lemon")}
               >
                 Remember Me
              </FormCheckbox>
             </Col>
-            <Col sm="12" md="3" className='text-center'>
-              <p onClick={_ => props.history.push('/resetPassword')} style={{ fontSize: '13px', fontWeight: "normal", textAlign: 'center', marginTop: -'20px', marginLeft: '-12px' }}>Forge Password</p>
+            <Col sm="12" md="3" className='ml-4'>
+              <p onClick={_ => props.history.push('/resetPassword')}  style={{ fontSize: '13px', cursor: "pointer", color: 'red', fontWeight: "normal", marginTop: -'20px' }}>Forge Password</p>
             </Col>
           </Row>
           <Row>
             <Col sm="0" md="3"></Col>
             <Col sm="12" md="3" className='text-center'>
-              <Button style={{ width: '90%', backgroundColor: '#43425D', color: '#FFF', bordercolor: '#FFF' }} className="mb-2" onClick={handleSubmit}>
+              <Button style={{ width: '100%', backgroundColor: '#43425D', color: '#FFF', bordercolor: '#FFF' }} className="mb-2" onClick={handleSubmit}>
                 Login
                 </Button>
             </Col>
-            <Col sm="12" md="3" className='text-center ml-3'>
-              <Button onClick={_ => props.history.push('/signUp')} style={{ width: '90%', backgroundColor: '#FFF', color: '#43425D', bordercolor: '#FFF' }} className="mb-2 mr-1">
+            <Col sm="12" md="3" className='text-center md-ml-3'>
+              <Button onClick={_ => props.history.push('/signUp')} style={{ width: '100%', backgroundColor: '#FFF', color: '#43425D', bordercolor: '#FFF' }} className="mb-2 mr-1">
                 Sign Up
               </Button>
             </Col>
