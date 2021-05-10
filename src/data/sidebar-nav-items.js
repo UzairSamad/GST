@@ -17,7 +17,7 @@ export default function() {
       to: "/products",
     },
     {
-      title: "Cateogries",
+      title: "Categories",
       htmlBefore: '<i class="material-icons">note_add</i>',
       to: "/cateogries",
     },

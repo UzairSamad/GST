@@ -113,16 +113,16 @@ const Login = (props) => {
           </Row>
           <Row>
             <Col sm="0" md="3"></Col>
-            <Col sm="12" md="3" className='text-center'>
+            <Col sm="12" md="6" className='text-center'>
               <Button style={{ width: '100%', backgroundColor: '#43425D', color: '#FFF', bordercolor: '#FFF' }} className="mb-2" onClick={handleSubmit}>
                 Login
                 </Button>
             </Col>
-            <Col sm="12" md="3" className='text-center md-ml-3'>
+            {/* <Col sm="12" md="3" className='text-center md-ml-3'>
               <Button onClick={_ => props.history.push('/signUp')} style={{ width: '100%', backgroundColor: '#FFF', color: '#43425D', bordercolor: '#FFF' }} className="mb-2 mr-1">
                 Sign Up
               </Button>
-            </Col>
+            </Col> */}
             <Col sm="12" md="2"></Col>
 
           </Row>

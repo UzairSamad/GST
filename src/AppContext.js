@@ -10,7 +10,9 @@ import {
     create_service,
     update_category,
     update_service,
-    delete_category
+    delete_category,
+    mobile_app_users,
+    get_appointments
 } from './WebApiServices/WebServices';
 import { createResource, deleteResource, getResource, updateResource } from './WebApiServices/SimpleApiCalls';
 import ErrorHelper from './views/components/Alert/ErrorHelper';
@@ -24,8 +26,8 @@ const AppProvider = props => {
     const [products, setProducts] = useState([])
     const [categories, setCategories] = useState([])
     const [services, setServices] = useState([])
-
-
+    const [appUsers, setAppUsers] = useState([])
+    const [appointment, setAppointment] = useState([])
 
     const getProduct = async () => {
         try {
@@ -37,6 +39,29 @@ const AppProvider = props => {
             setIsloading(false);
         }
     }
+
+    const getAllAppointment = async () => {
+        try {
+            let res = await getResource(get_appointments);
+            setIsloading(false);
+            setAppointment(res.data.data)
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
+
+    const getMobileUsers = async () => {
+        try {
+            let res = await getResource(mobile_app_users);
+            setIsloading(false);
+            setAppUsers(res.data.data)
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
+
     const getCategories = async () => {
         try {
             let res = await getResource(get_categories);
@@ -189,9 +214,11 @@ const AppProvider = props => {
                     deleteCategory,
                     createService,
                     updateService,
-                    isLoading
-
-
+                    isLoading,
+                    getMobileUsers,
+                    appUsers,
+                    getAllAppointment,
+                    appointment
                 }}
             >
                 {props.children}

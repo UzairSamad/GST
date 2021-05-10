@@ -27,3 +27,12 @@ export const get_services = `${baseUrl}/api/getAllService`
 export const create_service = `${baseUrl}/api/createService`
 export const update_service = `${baseUrl}/api/updateService`
 // export const delete_service =  `${baseUrl}/api/deleteProduct`
+
+// mobile user
+
+export const mobile_app_users = `${baseUrl}/api/allmobileUsers`
+
+
+// appointments
+
+export const get_appointments = `${baseUrl}/api/getAllAppointment`

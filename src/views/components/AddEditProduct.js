@@ -33,7 +33,7 @@ function AddProduct(props) {
         image: data.image,
         category: data.category,
         discount: data.discount,
-        id:data._id
+        id: data._id
     })
     const handleCreate = () => {
         let data = {
@@ -49,12 +49,17 @@ function AddProduct(props) {
         } else if (data.price == ' ') {
             ErrorHelper.handleErrors('Product Price is required', true)
 
-        } else {
+        }
+        else if (data.price < data.discount) {
+            ErrorHelper.handleErrors("Price Cannot be less than discount", true)
+        }
+
+        else {
             createProduct(data)
 
         }
     }
-console.log(data,'datadata')
+    console.log(data, 'datadata')
     const handleEdit = () => {
         let data = {
             name: productData.name,
@@ -126,7 +131,8 @@ console.log(data,'datadata')
                                 <FormGroup>
                                     <label htmlFor="Product Name">Product Name</label>
                                     <InputGroup className="mb-3">
-                                        <FormInput value={productData.name} onChange={e => setProductData({ ...productData, name: e.target.value })} placeholder="Product Name" />
+                                        <FormInput
+                                            value={productData.name} onChange={e => setProductData({ ...productData, name: e.target.value })} placeholder="Product Name" />
                                     </InputGroup>
                                 </FormGroup>
                             </Col>
@@ -134,7 +140,11 @@ console.log(data,'datadata')
                                 <FormGroup>
                                     <label htmlFor="Price">Price</label>
                                     <InputGroup className="mb-3">
-                                        <FormInput value={productData.price} onChange={e => setProductData({ ...productData, price: e.target.value })} placeholder="Price" />
+                                        <FormInput
+                                            type="number"
+                                            value={productData.price}
+                                            onChange={e => setProductData({ ...productData, price: e.target.value })}
+                                            placeholder="Price" />
                                     </InputGroup>
                                 </FormGroup>
                             </Col>
