@@ -146,7 +146,7 @@ const AppProvider = props => {
 
     const deleteCategory = async (id) => {
         try {
-            let res = await deleteResource(`${delete_category},${id}`)
+            let res = await deleteResource(`${delete_category}/${id}`)
             successHelper.handleSuccess('Category Deleted Succesfully')
             setIsloading(false);
             getCategories()
