@@ -76,7 +76,7 @@ const Login = (props) => {
              </FormCheckbox>
             </Col>
             <Col sm="12" md="3" className='text-center'>
-              <p style={{ fontSize: '13px', fontWeight: "normal", textAlign: 'center', marginTop: -'20px', marginLeft: '-12px' }}>Forge Password</p>
+              <p style={{ fontSize: '13px', fontWeight: "normal", textAlign: 'center', marginTop: -'20px', marginLeft: '-12px' }}>Forget Password</p>
             </Col>
           </Row>
           <Row>

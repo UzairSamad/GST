@@ -108,7 +108,7 @@ const Login = (props) => {
              </FormCheckbox>
             </Col>
             <Col sm="12" md="3" className='ml-4'>
-              <p onClick={_ => props.history.push('/resetPassword')}  style={{ fontSize: '13px', cursor: "pointer", color: 'red', fontWeight: "normal", marginTop: -'20px' }}>Forge Password</p>
+              <p onClick={_ => props.history.push('/resetPassword')}  style={{ fontSize: '13px', cursor: "pointer", color: 'red', fontWeight: "normal", marginTop: -'20px' }}>Forget Password</p>
             </Col>
           </Row>
           <Row>
