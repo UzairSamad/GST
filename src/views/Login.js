@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from 'react-hook-form';
-import './login.css'
+import styles from './login.module.css'
 import {
   Container,
   Row,
@@ -64,7 +64,7 @@ const Login = (props) => {
       {/* Page Header */}
       <Row >
         <Col md="7" sm="12" >
-          <img style={{}} src={companyLogo}   />
+          <img className={styles.image} src={companyLogo}   />
         </Col>
         <Col md="5" style={{ marginTop: '8%', backgroundColoe: 'white' }}>
           <Row>

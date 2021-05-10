@@ -3,15 +3,19 @@
     font-size: 14px !important;
 }
 
-img {
+.image {
   width: 100% !important;
    height: 47.4rem !important;
-   margin-left: -14px !important
+   margin-left: -14px !important;
+   
+
 }
 @media only screen and (max-width: 667px) {
-img {
+.img {
   width: 107% !important;
   height:20.4rem !important;
      margin-left: -14px !important
 }
 }
+
+
