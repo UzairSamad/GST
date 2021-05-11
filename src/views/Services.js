@@ -15,6 +15,8 @@ import {
 import { Link, withRouter } from "react-router-dom"
 import PageTitle from "./components/PageTitle";
 import { AppContext } from './../AppContext'
+import Loader from "./components/Loader"
+
 const Services = (props) => {
   // First list of posts.
   const initialData = {
@@ -29,7 +31,7 @@ const Services = (props) => {
     services,
     getServices,
     createService,
-    updateService } = context
+    updateService ,isLoading} = context
   const [PostsListOne, setPostOneList] = useState([
     {
       backgroundImage: require("../images/content-management/1.jpeg"),
@@ -111,6 +113,7 @@ const Services = (props) => {
   },[])
   return (
     <Container fluid className="main-content-container px-4">
+      <Loader isloading={isLoading} />
       <Row noGutters className="page-header py-4">
         <Col md="4">
           <PageTitle sm="4" title="Services" className="text-sm-left" />

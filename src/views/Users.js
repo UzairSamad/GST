@@ -14,6 +14,7 @@ import {
 import Avatar from '@material-ui/core/Avatar';
 import { AppContext } from "../AppContext"
 import PageTitle from "./components/PageTitle";
+import Loader from "./components/Loader"
 import classNames from "classnames";
 const cardClasses = classNames(
   "user-cards",
@@ -34,7 +35,7 @@ const users = [
 ]
 const Users = () => {
   const context = useContext(AppContext)
-  const { getMobileUsers, appUsers } = context
+  const { getMobileUsers, appUsers, isLoading } = context
 
   useEffect(() => {
     getMobileUsers()
@@ -42,6 +43,7 @@ const Users = () => {
   console.log(appUsers, "appUsersappUsersappUsersappUsers");
   return (
     <Container fluid className="main-content-container px-4">
+      <Loader isloading={isLoading} />
       <Row noGutters className="page-header py-4">
         <PageTitle sm="4" title="Users" className="text-sm-left" />
       </Row>
@@ -49,7 +51,7 @@ const Users = () => {
       <Row>
         {appUsers.length > 0 ?
           appUsers.map(val => {
-            console.log(val,"valvalvalvalval");
+            console.log(val, "valvalvalvalval");
             return (
               <Col lg="4" md="6" sm="12" className="col-lg mb-4" >
                 <Card small className={cardClasses}>

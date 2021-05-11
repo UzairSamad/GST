@@ -36,3 +36,4 @@ export const mobile_app_users = `${baseUrl}/api/allmobileUsers`
 // appointments
 
 export const get_appointments = `${baseUrl}/api/getAllAppointment`
+export const update_appointmentStatus = `${baseUrl}/api/updateAppointmentStatus`

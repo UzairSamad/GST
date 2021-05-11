@@ -18,6 +18,8 @@ import CategoriesTable from "./components/CategoriesTable";
 import AddEditCategory from "./components/AddEditCategory";
 import { AppContext } from '../AppContext'
 import ErrorHelper from './../views/components/Alert/ErrorHelper'
+import Loader from "./components/Loader"
+
 const Categories = () => {
   const [isOpen, setIsOPen] = React.useState(false)
   const [categoryName, setCategoryName] = React.useState('')
@@ -27,7 +29,8 @@ const Categories = () => {
     createCategory,
     updateCategory,
     deleteCategory,
-    categories
+    categories,
+    isLoading
   } = contextt
   const tableHeader = ['Name']
   const tableDisplayData = ['name']
@@ -71,6 +74,8 @@ const Categories = () => {
   }
   return (
     <Container fluid className="main-content-container px-4">
+            <Loader isloading={isLoading} />
+
       {/* Page Header */}
       <Row noGutters className="page-header py-4">
         <Col md="4">

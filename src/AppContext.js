@@ -12,7 +12,8 @@ import {
     update_service,
     delete_category,
     mobile_app_users,
-    get_appointments
+    get_appointments,
+    update_appointmentStatus
 } from './WebApiServices/WebServices';
 import { createResource, deleteResource, getResource, updateResource } from './WebApiServices/SimpleApiCalls';
 import ErrorHelper from './views/components/Alert/ErrorHelper';
@@ -30,6 +31,8 @@ const AppProvider = props => {
     const [appointment, setAppointment] = useState([])
 
     const getProduct = async () => {
+        setIsloading(true)
+
         try {
             let res = await getResource(get_products);
             setIsloading(false);
@@ -41,6 +44,7 @@ const AppProvider = props => {
     }
 
     const getAllAppointment = async () => {
+        setIsloading(true)
         try {
             let res = await getResource(get_appointments);
             setIsloading(false);
@@ -52,6 +56,8 @@ const AppProvider = props => {
     }
 
     const getMobileUsers = async () => {
+        setIsloading(true)
+
         try {
             let res = await getResource(mobile_app_users);
             setIsloading(false);
@@ -63,6 +69,8 @@ const AppProvider = props => {
     }
 
     const getCategories = async () => {
+        setIsloading(true)
+
         try {
             let res = await getResource(get_categories);
             console.log(res, 'resssssssssss')
@@ -74,6 +82,8 @@ const AppProvider = props => {
         }
     }
     const getServices = async () => {
+        setIsloading(true)
+
         try {
             let res = await getResource(get_services);
             console.log(res, 'resssssssssss')
@@ -85,6 +95,7 @@ const AppProvider = props => {
         }
     }
     const createProduct = async data => {
+
         setIsloading(true);
         try {
             let res = await createResource(`${create_product}`, data)
@@ -127,6 +138,8 @@ const AppProvider = props => {
 
 
     const updateProduct = async (data, id) => {
+        setIsloading(true)
+
         try {
             let res = await updateResource(`${update_product}/${id}`, data)
 
@@ -139,8 +152,23 @@ const AppProvider = props => {
             setIsloading(false);
         }
     }
+    const updateAppointment = async (data, id) => {
+        setIsloading(true)
+
+        try {
+            let res = await updateResource(`${update_appointmentStatus}/${id}`, data)
+            successHelper.handleSuccess('Status Updated Successfully', true);
+            getAllAppointment()
+            setIsloading(false);
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
 
     const updateCategory = async (data, id) => {
+        setIsloading(true)
+
         try {
             let res = await updateResource(`${update_category}/${id}`, data)
 
@@ -156,6 +184,8 @@ const AppProvider = props => {
     }
 
     const updateService = async (data, id) => {
+        setIsloading(true)
+
         try {
             let res = await updateResource(`${update_service}/${id}`, data)
 
@@ -170,6 +200,8 @@ const AppProvider = props => {
     }
 
     const deleteCategory = async (id) => {
+        setIsloading(true)
+
         try {
             let res = await deleteResource(`${delete_category}/${id}`)
             successHelper.handleSuccess('Category Deleted Succesfully')
@@ -183,6 +215,8 @@ const AppProvider = props => {
     }
 
     const deleteProduct = async (id) => {
+        setIsloading(true)
+
         try {
             let res = await deleteResource(`${delete_product}/${id}`)
             successHelper.handleSuccess('Product Deleted Succesfully')
@@ -218,7 +252,8 @@ const AppProvider = props => {
                     getMobileUsers,
                     appUsers,
                     getAllAppointment,
-                    appointment
+                    appointment,
+                    updateAppointment
                 }}
             >
                 {props.children}
