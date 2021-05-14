@@ -13,7 +13,12 @@ import {
     delete_category,
     mobile_app_users,
     get_appointments,
-    update_appointmentStatus
+    update_appointmentStatus,
+    update_promotion,
+    delete_promotion,
+    get_promotions,
+    create_promotion,
+    get_all_orders
 } from './WebApiServices/WebServices';
 import { createResource, deleteResource, getResource, updateResource } from './WebApiServices/SimpleApiCalls';
 import ErrorHelper from './views/components/Alert/ErrorHelper';
@@ -25,8 +30,10 @@ const AppProvider = props => {
     const [isLoading, setIsloading] = useState(false);
     const [image, setImage] = useState('');
     const [products, setProducts] = useState([])
+    const [promotions, setPromotions] = useState([])
     const [categories, setCategories] = useState([])
     const [services, setServices] = useState([])
+    const [orders, setOrders] = useState([])
     const [appUsers, setAppUsers] = useState([])
     const [appointment, setAppointment] = useState([])
 
@@ -37,6 +44,17 @@ const AppProvider = props => {
             let res = await getResource(get_products);
             setIsloading(false);
             setProducts(res.data.data)
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
+    const getPromotions = async () => {
+        setIsloading(true)
+        try {
+            let res = await getResource(get_promotions);
+            setIsloading(false);
+            setPromotions(res.data.data)
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
             setIsloading(false);
@@ -94,6 +112,19 @@ const AppProvider = props => {
             setIsloading(false);
         }
     }
+    const getAllOrders = async () => {
+        setIsloading(true)
+
+        try {
+            let res = await getResource(get_all_orders);
+            console.log(res, 'resssssssssss')
+            setOrders(res.data.data)
+            setIsloading(false);
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
     const createProduct = async data => {
 
         setIsloading(true);
@@ -102,6 +133,18 @@ const AppProvider = props => {
             successHelper.handleSuccess('Product Created Successfully', true);
             window.location = '/products'
 
+            setIsloading(false);
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    };
+    const createPromotion = async data => {
+        setIsloading(true);
+        try {
+            let res = await createResource(`${create_promotion}`, data)
+            successHelper.handleSuccess('Promotion Created Successfully', true);
+            window.location = '/promo-deals'
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
@@ -139,13 +182,23 @@ const AppProvider = props => {
 
     const updateProduct = async (data, id) => {
         setIsloading(true)
-
         try {
             let res = await updateResource(`${update_product}/${id}`, data)
-
             successHelper.handleSuccess('Product Updated Successfully', true);
             window.location = '/products'
 
+            setIsloading(false);
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
+    const updateOrderStatus = async (data, id) => {
+        setIsloading(true)
+        try {
+            let res = await updateResource(`${update_product}/${id}`, {})
+            successHelper.handleSuccess('Order Updated Succesfully', true);
+            window.location = '/orders'
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
@@ -198,6 +251,18 @@ const AppProvider = props => {
             setIsloading(false);
         }
     }
+    const updatePromotion = async (data, id) => {
+        setIsloading(true)
+        try {
+            let res = await updateResource(`${update_promotion}/${id}`, data)
+            successHelper.handleSuccess('Promotion Updated Successfully', true);
+            window.location = '/promo-deals'
+            setIsloading(false);
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
 
     const deleteCategory = async (id) => {
         setIsloading(true)
@@ -227,6 +292,21 @@ const AppProvider = props => {
             setIsloading(false);
         }
     }
+    const deletePromotion = async (id) => {
+        setIsloading(true)
+
+        try {
+            let res = await deleteResource(`${delete_promotion}/${id}`)
+            successHelper.handleSuccess('Promotion Deleted Succesfully')
+            getPromotions()
+            setIsloading(false);
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
+
+
 
 
 
@@ -253,7 +333,15 @@ const AppProvider = props => {
                     appUsers,
                     getAllAppointment,
                     appointment,
-                    updateAppointment
+                    updateAppointment,
+                    getPromotions,
+                    createPromotion,
+                    updatePromotion,
+                    deletePromotion,
+                    promotions,
+                    updateOrderStatus,
+                    getAllOrders,
+                    orders
                 }}
             >
                 {props.children}

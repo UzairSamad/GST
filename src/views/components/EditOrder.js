@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React,{useState} from "react";
+import React, { useState ,useContext} from "react";
 import {
     Row,
     Col,
@@ -18,28 +18,42 @@ import {
 
 import PageTitle from "./PageTitle";
 import Avatar from '@material-ui/core/Avatar';
-
+import { AppContext } from '../../AppContext'
+import ErrorHelper from '../components/Alert/ErrorHelper'
+import Loader from '../components/Loader'
 function EditOrder(props) {
-    console.log(props,'props')
+
+    const context = useContext(AppContext)
+    const { updateOrderStatus, isLoading } = context
     const { state } = props.location
-    const { title ,data} = state
-    console.log(data,'datadata')
-    const [productData,setProductData] = useState({
-        name:data.name,
-        price:data.price,
-        description:data.Description,
-        status:data.status,
-        date:data.date
+    const { title, data } = state
+    console.log(data, 'datadata')
+    const [productData, setProductData] = useState({
+        name: data.name,
+        price: data.price,
+        description: data.Description,
+        status: data.status,
+        date: data.date,
+        category: data.category,
+        orderStatus: data.status || 'Pending'
     })
+    const [orderStatus, setOrderStatus] = useState(data.status || 'Pending')
+
+
+    const handleConfirm = () => {
+        updateOrderStatus({status:productData.orderStatus},data._id)
+    }
     return (
         <Container fluid className="main-content-container px-4">
+            <Loader isLoading={isLoading} />
+
             <Row noGutters className="page-header py-4">
                 <PageTitle sm="4" title={`Change Order Status`} className="text-sm-left" />
             </Row>
             <Row>
                 <Col lg="12" md="6" sm="12" className="text-md-center">
-                        <Avatar alt="Remy Sharp" size='large' className="text-md-center" style={{ width: '90px', height: '90px' ,marginLeft:'40%',marginBottom:'-5px'}} size src="https://www.pngjoy.com/pngm/186/3682484_harambe-face-sample-avatar-hd-png-download.png" />
-                        <i class="material-icons" style={{ cursor: 'pointer',marginLeft:'-5%',marginTop:'-25px', fontSize: '20px' }}>edit</i>
+                    <Avatar alt="Remy Sharp" size='large' className="text-md-center" style={{ width: '90px', height: '90px', marginLeft: '40%', marginBottom: '-5px' }} size src="https://www.pngjoy.com/pngm/186/3682484_harambe-face-sample-avatar-hd-png-download.png" />
+                    <i class="material-icons" style={{ cursor: 'pointer', marginLeft: '-5%', marginTop: '-25px', fontSize: '20px' }}>edit</i>
                 </Col>
             </Row>
             <Row>
@@ -50,7 +64,7 @@ function EditOrder(props) {
                                 <FormGroup>
                                     <label htmlFor="Product Name">Product Name</label>
                                     <InputGroup className="mb-3">
-                                        <FormInput value={productData.name} placeholder="Product Name" />
+                                        <FormInput value={productData.name} disabled={true} placeholder="Product Name" />
                                     </InputGroup>
                                 </FormGroup>
                             </Col>
@@ -58,28 +72,26 @@ function EditOrder(props) {
                                 <FormGroup>
                                     <label htmlFor="Price">Price</label>
                                     <InputGroup className="mb-3">
-                                        <FormInput value={productData.price} placeholder="Price" />
+                                        <FormInput value={productData.price} disabled={true} placeholder="Price" />
                                     </InputGroup>
                                 </FormGroup>
                             </Col>
-                            <Col sm="12" md="4">
+                            {/* <Col sm="12" md="4">
                                 <FormGroup>
                                     <label htmlFor="Product Name">Category</label>
-                                    <FormSelect>
+                                    <FormSelect value={productData.category}>
                                         <option>Choose ...</option>
                                         <option>Test</option>
                                         <option>Test 1</option>
                                     </FormSelect>
                                 </FormGroup>
-                            </Col>
+                            </Col> */}
                             <Col sm="12" md="4">
                                 <FormGroup>
                                     <label htmlFor="Product Name">Status</label>
-                                    <FormSelect>
-                                        
-                                        <option>Choose ...</option>
-                                        <option>Cancel</option>
+                                    <FormSelect onChange={e => setOrderStatus(e.target.value)} value={orderStatus}>
                                         <option>Pendeing</option>
+                                        <option>Cancel</option>
                                         <option>Deliverd</option>
                                     </FormSelect>
                                 </FormGroup>
@@ -92,7 +104,7 @@ function EditOrder(props) {
                                     </InputGroup>
                                 </FormGroup>
                             </Col>
-                            
+
                         </Row>
                     </Form>
                 </Col>
@@ -100,7 +112,7 @@ function EditOrder(props) {
             <Row>
                 <Col sm="12" md="12">
                     <FormGroup>
-                        <label htmlFor="Description">Description</label>
+                        <label htmlFor="Description" disabled={true}>Description</label>
                         <InputGroup className="mb-3">
                             <FormTextarea value={productData.description} rows="10" placeholder="Description" />
                         </InputGroup>
@@ -109,7 +121,7 @@ function EditOrder(props) {
             </Row>
             <Row >
                 <Col sm="12" md="12" className="text-center">
-                    <Button style={{ width: '20%' }} theme="primary" className="mb-2 mr-1">
+                    <Button style={{ width: '20%' }} theme="primary" className="mb-2 mr-1" onClick={_ => handleConfirm()}>
                         Confirm
                   </Button>
                 </Col>

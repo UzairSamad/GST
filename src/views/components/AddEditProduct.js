@@ -19,13 +19,14 @@ import axios from "axios"
 import PageTitle from "./PageTitle";
 import { AppContext } from '../../AppContext'
 import ErrorHelper from '../components/Alert/ErrorHelper'
+import Loader from '../components/Loader'
 function AddProduct(props) {
     const imageRef = useRef()
     console.log(props, 'props')
     const { state } = props.location
     const { title, data } = state
     const context = useContext(AppContext)
-    const { createProduct, updateProduct, categories } = context
+    const { createProduct, updateProduct, categories, isLoading } = context
     const [productData, setProductData] = useState({
         name: data.name,
         price: data.price,
@@ -97,6 +98,7 @@ function AddProduct(props) {
 
     return (
         <Container fluid className="main-content-container px-4">
+            <Loader isLoading={isLoading} />
             <Row noGutters className="page-header py-4">
                 <PageTitle sm="4" title={title} className="text-sm-left" />
             </Row>

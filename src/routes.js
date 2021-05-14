@@ -19,6 +19,7 @@ import Login from "./views/Login";
 import SignUp from "./views/SignUp";
 import NewPassword from "./views/NewPassword";
 import ResetPassword from "./views/ResetPassword";
+import PromotionProducts from "./views/PromotionProducts";
 import {
   AddProduct,
   EditOrder,
@@ -134,6 +135,11 @@ export default [
     path: "/addEdit-promocode",
     layout: DefaultLayout,
     component: AddPromoCode
+  },
+  {
+    path: "/PromotionProducts",
+    layout: DefaultLayout,
+    component: PromotionProducts
   },
 
 ];

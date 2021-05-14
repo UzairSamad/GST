@@ -40,11 +40,13 @@ const OrderTable = ({ tableHead, tableBody, tableDisplayData ,props}) => (
                                                                     <span class="dot" style={{
                                                                         backgroundColor:
                                                                             row[val] == 'Cancel' ? '#e53935' :
-                                                                                row[val] == 'Pending' ? '#FFA000' : "#388E3C"
+                                                                                row[val] == 'Pending' ? '#FFA000' : "#FFA000"
+                                                                                //  "#388E3C"
 
 
                                                                     }}></span>
-                                                                    {row[val]}
+                                                                    {/* {row[val]} */}
+                                                                    Pending
                                                                 </td>
                                                         )
                                                     })

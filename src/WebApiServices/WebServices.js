@@ -6,7 +6,9 @@ export const authenticateClientBeforeLogin = `${baseUrl}/authenticate`;
 export const user_register = `${baseUrl}/api/register`;
 export const user_login = `${baseUrl}/api/login`;
 
+// forget password
 
+export const forget_password = `${baseUrl}/api/change-password`;
 
 // product apis
 export const get_products = `${baseUrl}/api/getAllProduct`
@@ -37,3 +39,15 @@ export const mobile_app_users = `${baseUrl}/api/allmobileUsers`
 
 export const get_appointments = `${baseUrl}/api/getAllAppointment`
 export const update_appointmentStatus = `${baseUrl}/api/updateAppointmentStatus`
+
+// promotions apis
+export const create_promotion = `${baseUrl}/api/createPromotion`
+export const get_promotions = `${baseUrl}/api/getAllPromotions`
+export const delete_promotion = `${baseUrl}/api/deletePromotions`
+export const update_promotion = `${baseUrl}/api/updatePromotions`
+
+// oreders apis
+export const get_all_orders = `${baseUrl}/api/allOrder`
+export const update_orderStatus = `${baseUrl}/api/updateOrderStatus`
+
+

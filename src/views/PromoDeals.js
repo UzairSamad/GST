@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React from "react";
+import React, { useEffect ,useContext} from "react";
 import {
   Container,
   Row,
@@ -15,11 +15,20 @@ import {
 
 import PageTitle from "./components/PageTitle";
 import CustomTable from "./components/CustomTable.js";
+import { AppContext } from '../AppContext'
+import Loader from './components/Loader'
 
 
 const PromoCodes = (props) => {
-  const tableHeader = ['#', 'Image', 'Product Name', 'Before Price', 'After Price']
-  const tableDisplayData = ['id', 'img', 'name', 'bfprice', 'afPrice', ]
+  const tableHeader = [ 'Image', 'Product Name', 'Before Price', 'After Price']
+  const tableDisplayData = ['image', 'name', 'price', 'afterPrice',]
+  const context = useContext(AppContext)
+  const { getPromotions, isLoading, promotions, deletePromotion, } = context
+
+  useEffect(() => {
+    getPromotions()
+  }, [])
+
   const initialData = {
     name: '',
     price: '',
@@ -31,7 +40,7 @@ const PromoCodes = (props) => {
       img: 'https://neilpatel.com/wp-content/uploads/2017/09/image-editing-tools.jpg',
       name: 'Small Wig',
       bfprice: '$11',
-      afPrice:"$5"
+      afPrice: "$5"
 
 
     },
@@ -40,14 +49,14 @@ const PromoCodes = (props) => {
       img: 'https://neilpatel.com/wp-content/uploads/2017/09/image-editing-tools.jpg',
       name: 'Small Wig',
       bfprice: '$11',
-      afPrice:"$5"
+      afPrice: "$5"
     },
     {
       id: 3,
       img: 'https://neilpatel.com/wp-content/uploads/2017/09/image-editing-tools.jpg',
       name: 'Small Wig',
       bfprice: '$11',
-      afPrice:"$5"
+      afPrice: "$5"
 
     },
     {
@@ -55,7 +64,7 @@ const PromoCodes = (props) => {
       img: 'https://neilpatel.com/wp-content/uploads/2017/09/image-editing-tools.jpg',
       name: 'Small Wig',
       bfprice: '$11',
-      afPrice:"$5"
+      afPrice: "$5"
 
     },
     {
@@ -63,13 +72,15 @@ const PromoCodes = (props) => {
       img: 'https://neilpatel.com/wp-content/uploads/2017/09/image-editing-tools.jpg',
       name: 'Small Wig',
       bfprice: '$11',
-      afPrice:"$5"
+      afPrice: "$5"
 
     }
   ]
   return (
     <Container fluid className="main-content-container px-4">
       {/* Page Header */}
+      <Loader isloading={isLoading} />
+
       <Row noGutters className="page-header py-4">
         <Col md="4">
           <PageTitle sm="12" title="PromoCode and Deals" className="text-sm-left" />
@@ -80,16 +91,16 @@ const PromoCodes = (props) => {
             type="email"
             placeholder="Search"
           />          </Col>
-      <Col  md="2">
-      </Col>
         <Col md="2">
-          <Button onClick={_ => props.history.push({ pathname: '/addEdit-promocode', state: { title: "Add PromoCode",data:initialData } })} theme="primary" className="mb-2 mr-1" style={{ width: '85%' }}>
+        </Col>
+        <Col md="2">
+          <Button onClick={_ => props.history.push({ pathname: '/PromotionProducts', state: { title: "Add PromoCode", data: initialData } })} theme="primary" className="mb-2 mr-1" style={{ width: '85%' }}>
             Add
          </Button>
         </Col>
       </Row>
 
-      <CustomTable titleEdit='Edit PromoCode and Deals' props={props} onEditNavigate='/addEdit-promocode' tableHead={tableHeader} tableBody={tableBody} tableDisplayData={tableDisplayData} />
+      <CustomTable handleDelete={deletePromotion} titleEdit='Edit PromoCode and Deals' props={props} onEditNavigate='/addEdit-promocode' tableHead={tableHeader} tableBody={promotions} tableDisplayData={tableDisplayData} />
     </Container>
   );
 }
