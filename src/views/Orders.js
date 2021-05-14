@@ -19,61 +19,11 @@ import { AppContext } from '../AppContext'
 import Loader from './components/Loader'
 
 const Orders = (props) => {
-  const tableHeader = ['Product Name', 'Description', 'Status', 'Price']
+  const tableHeader = ['Product Id', 'Payment Type', 'Status', 'Total Price', 'Date']
   const tableDisplayData = ['name', 'description', 'status', 'price']
   const context = useContext(AppContext)
   const { isLoading, getAllOrders, orders } = context
-  const tableBody = [
-    {
-      id: 1,
-      name: 'Small Wig',
-      Description: 'Hiiiiii thisis des',
-      status: 'Cancel',
-      price: '$11',
-      date: '19-01-2021'
-
-    },
-    {
-      id: 2,
-      name: 'Small Wig',
-      Description: 'Hiiiiii thisis des',
-      status: 'Cancel',
-      price: '$11',
-      date: '19-01-2021'
-
-
-    },
-    {
-      id: 3,
-      name: 'Small Wig',
-      Description: 'Hiiiiii thisis des',
-      status: 'Delivered',
-      price: '$11',
-      date: '19-01-2021'
-
-
-    },
-    {
-      id: 4,
-      name: 'Small Wig',
-      Description: 'Hiiiiii thisis des',
-      status: 'Pending',
-      price: '$11',
-      date: '19-01-2021'
-
-
-    },
-    {
-      id: 5,
-      name: 'Small Wig',
-      Description: 'Hiiiiii thisis des',
-      status: 'Delivered',
-      price: '$11',
-      date: '19-01-2021'
-
-
-    }
-  ]
+ 
   useEffect(() => {
     getAllOrders()
 

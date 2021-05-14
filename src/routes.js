@@ -71,16 +71,8 @@ export default [
     layout: DefaultLayout,
     component: Users
   },
-  {
-    path: "/services",
-    layout: DefaultLayout,
-    component: Services
-  },
-  {
-    path: "/addServices",
-    layout: DefaultLayout,
-    component: AddService
-  },
+
+
   {
     path: "/orders",
     layout: DefaultLayout,

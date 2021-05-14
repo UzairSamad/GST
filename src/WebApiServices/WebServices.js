@@ -58,6 +58,11 @@ export const update_Aboutus = `${baseUrl}/api/updateAbout`
 export const update_deliveryCharges = `${baseUrl}/api/updateSettings`
 
 
+//customer care 
+
+export const customer_care = `${baseUrl}/api/getContactUs`
+
+
 
 
 

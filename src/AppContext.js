@@ -18,7 +18,8 @@ import {
     delete_promotion,
     get_promotions,
     create_promotion,
-    get_all_orders
+    get_all_orders,
+    customer_care
 } from './WebApiServices/WebServices';
 import { createResource, deleteResource, getResource, updateResource } from './WebApiServices/SimpleApiCalls';
 import ErrorHelper from './views/components/Alert/ErrorHelper';
@@ -36,6 +37,7 @@ const AppProvider = props => {
     const [orders, setOrders] = useState([])
     const [appUsers, setAppUsers] = useState([])
     const [appointment, setAppointment] = useState([])
+    const [customercare, setCustomerCare] = useState("")
 
     const getProduct = async () => {
         setIsloading(true)
@@ -49,6 +51,20 @@ const AppProvider = props => {
             setIsloading(false);
         }
     }
+
+    const getCustomerCare = async () => {
+        setIsloading(true)
+
+        try {
+            let res = await getResource(customer_care);
+            setIsloading(false);
+            setCustomerCare(res.data.data)
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
+
     const getPromotions = async () => {
         setIsloading(true)
         try {
@@ -341,7 +357,9 @@ const AppProvider = props => {
                     promotions,
                     updateOrderStatus,
                     getAllOrders,
-                    orders
+                    orders,
+                    getCustomerCare,
+                    customercare
                 }}
             >
                 {props.children}

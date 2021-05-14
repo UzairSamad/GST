@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Container,
   Row,
@@ -15,6 +15,7 @@ import {
   InputGroup,
   FormGroup
 } from "shards-react";
+import { AppContext } from "../AppContext";
 
 import PageTitle from "./components/PageTitle";
 import "./styles/appointment.css"
@@ -60,6 +61,16 @@ const data = [
 ]
 
 const CustomerSupport = (props) => {
+
+  const context = useContext(AppContext)
+  const { getCustomerCare, customercare } = context
+
+  console.log(getCustomerCare, customercare, "GET_CUSTOMMMMMM");
+
+  useEffect(() => {
+    getCustomerCare()
+  }, [])
+
   const [showMessage, setShowMessage] = React.useState(false)
   return (
     <Container fluid className="main-content-container px-4">
@@ -109,7 +120,7 @@ const CustomerSupport = (props) => {
                       style={{ width: '45px', height: '45px' }}
                     />
                     <div>
-                      <p style={{marginBottom:'0px'}} >David James</p>
+                      <p style={{ marginBottom: '0px' }} >David James</p>
                       <p style={{ fontSize: '14px' }}>to me</p>
                     </div>
 
@@ -119,11 +130,7 @@ const CustomerSupport = (props) => {
                 </div>
                 <p>Hi,David</p>
                 <p> Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum quisquam deserunt. Odit vel sint dolor eos. Ea blanditiis animi. Quibusdam unde unde. Perspiciatis vel pariatur qui. Deleniti omnis est quae. Laboriosam numquam amet aliquid. Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum quisquam deserunt. Odit vel sint dolor eos. Ea blanditiis animi. Quibusdam unde unde. Perspiciatis vel pariatur qui. Deleniti omnis est quae. Laboriosam numquam amet aliquid.Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum</p>
-                <FormGroup>
-                  <InputGroup className="mb-3">
-                    <FormTextarea rows="5" placeholder="Reply" />
-                  </InputGroup>
-                </FormGroup>
+
 
 
               </>

@@ -36,11 +36,7 @@ export default function() {
       htmlBefore: '<i class="material-icons">person</i>',
       to: "/appointments",
     },
-    {
-      title: "Services",
-      htmlBefore: '<i class="material-icons">error</i>',
-      to: "/services",
-    },
+
     {
       title: "PromoCodes & Deals",
       htmlBefore: '<i class="material-icons">table_chart</i>',
