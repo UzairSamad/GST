@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -13,77 +13,94 @@ import {
   FormGroup,
   InputGroup,
   FormInput,
-  FormCheckbox
+  FormTextarea
 } from "shards-react";
 
 import PageTitle from "./components/PageTitle";
 
 const Settings = () => {
-  const [state, setState] = React.useState({
-    orange: false,
-    lemon: false,
-    kiwi: false
-  })
-
-  const handleChange = (e, fruit) => {
-    const newState = {};
-    newState[fruit] = !state[fruit];
-    setState({ ...state, ...newState });
-  }
-
+  const [deliverycharges, setDeliveryCharges] = useState('')
+  const [vat, setVat] = useState('')
+  const [aboutUs, setAboutUs] = useState('')
+  const [privacyPolicy, setPrivacyPolicy] = useState('')
   return (
     <Container fluid className="main-content-container px-4">
       <Row noGutters className="page-header py-4">
         <PageTitle sm="4" title="Settings" className="text-sm-left" />
       </Row>
       <Row>
+        <Col sm="12" md="12">
+          <p >Delivery Charges and VAT</p>
+        </Col>
         <Col sm="12" md="4">
-          <p style={{ border: "1px solid", textAlign: 'center', padding: '5px', width: '80%' }}>Set Delivery Charges</p>
+          <FormGroup>
+            <label htmlFor="Product Name">Delivery Charges</label>
+            <InputGroup className="mb-3">
+              <FormInput
+                value={deliverycharges} placeholder="Delivery Charges" onChange={e => setDeliveryCharges(e.target.value)} />
+            </InputGroup>
+          </FormGroup>
         </Col>
-        <Col sm="12" md="2">
-          <p style={{ border: "1px solid", textAlign: 'center', padding: '5px', width: '70%' }}>10%</p>
+        <Col sm="12" md="4">
+          <FormGroup>
+            <label htmlFor="Product Name">VAT</label>
+            <InputGroup className="mb-3">
+              <FormInput
+                value={vat} placeholder="VAT" onChange={e => setVat(e.target.value)} />
+            </InputGroup>
+          </FormGroup>
         </Col>
-        <Col sm="12" md="2">
-          <FormCheckbox
-            checked={state.orange}
-            onChange={e => handleChange(e, "orange")}
-          >
-            Yes
-        </FormCheckbox>
+        <Col sm="12" md="4">
+        <FormGroup>
+            {/* <label htmlFor="Product Name"></label> */}
+            <InputGroup className="mb-3">
+            <Button style={{ width: '100%' }} theme="primary" >
+              Update Deleivery
+         </Button>
+         </InputGroup>
+          </FormGroup>
+
         </Col>
-        <Col sm="12" md="2">
-          <FormCheckbox
-            checked={state.lemon}
-            onChange={e => handleChange(e, "lemon")}
-          >
-            No
-        </FormCheckbox>
+      </Row>
+      <Row className="mt-3">
+        <Col sm="12" md="12">
+          <p >About Us</p>
+          <FormGroup>
+            <InputGroup >
+              <FormTextarea value={aboutUs} onChange={e => setAboutUs(e.target.value)} rows="10" placeholder="About Us" />
+            </InputGroup>
+          </FormGroup>
+        </Col>
+
+
+      </Row>
+      <Row>
+        <Col sm="12" md="9">
+        </Col>
+        <Col sm="12" md="3">
+          <Button style={{ width: '100%' }} theme="primary" className="mb-2">
+            Update About Us
+         </Button>
         </Col>
       </Row>
       <Row>
-        <Col sm="12" md="4">
-          <p style={{ border: "1px solid", textAlign: 'center', padding: '5px', width: '80%' }}>Set Vat on the Product</p>
+        <Col sm="12" md="12">
+          <p >Privacy Policy</p>
+          <FormGroup>
+            <InputGroup >
+              <FormTextarea value={privacyPolicy} onChange={e => setPrivacyPolicy(e.target.value)} rows="10" placeholder="Privacy Policy" />
+            </InputGroup>
+          </FormGroup>
         </Col>
-        <Col sm="12" md="2">
-          <p style={{ border: "1px solid", textAlign: 'center', padding: '5px', width: '70%' }}>10%</p>
+      </Row>
+      <Row>
+        <Col sm="12" md="9">
         </Col>
-        <Col sm="12" md="2">
-          <FormCheckbox
-            checked={state.orange}
-            onChange={e => handleChange(e, "orange")}
-          >
-            Yes
-        </FormCheckbox>
+        <Col sm="12" md="3">
+          <Button style={{ width: '100%' }} theme="primary" className="mb-2">
+            Update Privacy Policy
+         </Button>
         </Col>
-        <Col sm="12" md="2">
-          <FormCheckbox
-            checked={state.lemon}
-            onChange={e => handleChange(e, "lemon")}
-          >
-            No
-        </FormCheckbox>
-        </Col>
-
       </Row>
 
 
