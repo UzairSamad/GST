@@ -65,13 +65,20 @@ const CustomerSupport = (props) => {
   const context = useContext(AppContext)
   const { getCustomerCare, customercare } = context
 
-  console.log(getCustomerCare, customercare, "GET_CUSTOMMMMMM");
+  console.log(customercare, "GET_CUSTOMMMMMM");
 
   useEffect(() => {
     getCustomerCare()
   }, [])
 
   const [showMessage, setShowMessage] = React.useState(false)
+  const [userDetails, setUserDetails] = React.useState({
+    date: "",
+    question: "",
+    userName: "",
+    __v: 0,
+    _id: ""
+  })
   return (
     <Container fluid className="main-content-container px-4">
       <Row noGutters className="page-header py-4">
@@ -83,19 +90,23 @@ const CustomerSupport = (props) => {
             placeholder="Search here"
           />
           {
-            data.map((data) => {
+            customercare.map((data) => {
               return (
                 <>
-                  <Col style={{ cursor: "pointer" }} onClick={_ => setShowMessage(true)} className="border containersssss">
-                    <div class="d-flex vertical-center">
-                      <div style={{ marginTop: "20%" }}>
+                  <Col style={{ cursor: "pointer" }} onClick={_ => {
+                    setShowMessage(true)
+                    setUserDetails(data)
+                  }
+                  } className="border containersssss">
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }} >
+                      {/* <div style={{ marginTop: "20%" }}>
                         <img src={data.img} class="rounded-circle user_img" />
+                      </div> */}
+                      <div class="user_info" style={{ marginTop: "2%", marginLeft: "10px" }}>
+                        <span>{`Name: ${data.userName}`}</span><br />
+                        <span>{`Title: ${data.title}`}</span>
                       </div>
-                      <div class="user_info" style={{ marginTop: "15%", marginLeft: "10px" }}>
-                        <span>{data.name}</span><br />
-                        <span>{data.Description}</span>
-                      </div>
-                      <div class="user_info" style={{ marginTop: "15%", marginLeft: "10px" }}>
+                      <div class="user_info" style={{ marginTop: "50px" }}>
                         <span>{data.date}</span>
                       </div>
                     </div>
@@ -111,25 +122,30 @@ const CustomerSupport = (props) => {
             showMessage ?
               <>
 
-                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', borderBottom: '1px solid #0000000A', paddingBottom: '15px' }}>
+                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', borderBottom: '1px solid #0000000A', paddingBottom: '15px', marginBottom:'20px'}}>
                   <div style={{ display: 'flex', flexDirection: 'row' }}>
 
-                    <img
+                    {/* <img
                       className="user-avatar rounded-circle mr-2"
                       src="https://www.pngjoy.com/pngm/186/3682484_harambe-face-sample-avatar-hd-png-download.png" alt="User Avatar"
                       style={{ width: '45px', height: '45px' }}
-                    />
+                    /> */}
                     <div>
-                      <p style={{ marginBottom: '0px' }} >David James</p>
-                      <p style={{ fontSize: '14px' }}>to me</p>
+                      <p style={{ marginBottom: '0px' }} >{userDetails.userName}</p>
+                      {/* <p style={{ fontSize: '14px' }}>to me</p> */}
                     </div>
 
                   </div>
+<div style={{display:'flex',flexDirection:'row'}}>
 
-                  <p style={{ marginTop: '5px', alignSelf: 'flex-end', textAlign: 'flex-end' }}>12/02/2021</p>
+                  <p style={{ marginTop: '5px', alignSelf: 'flex-end', textAlign: 'flex-end'}}>{userDetails.date}</p>
+                  <i class="material-icons" style={{fontSize:'20px',cursor:'pointer',marginTop:'-20px',marginLeft:'-10px',color:'red'}} onClick={_=>setShowMessage(false)}>cancel</i>
+                  </div>
+
+
                 </div>
-                <p>Hi,David</p>
-                <p> Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum quisquam deserunt. Odit vel sint dolor eos. Ea blanditiis animi. Quibusdam unde unde. Perspiciatis vel pariatur qui. Deleniti omnis est quae. Laboriosam numquam amet aliquid. Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum quisquam deserunt. Odit vel sint dolor eos. Ea blanditiis animi. Quibusdam unde unde. Perspiciatis vel pariatur qui. Deleniti omnis est quae. Laboriosam numquam amet aliquid.Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum</p>
+                <p >{`Title : ${userDetails.title}`}</p>
+                <p>{`Question : ${userDetails.question}`}</p>
 
 
 

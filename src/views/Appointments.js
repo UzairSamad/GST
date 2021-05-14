@@ -141,7 +141,7 @@ const Appointments = (props) => {
                   </div>
 
                   {/* <p style={{ marginTop: '5px', alignSelf: 'flex-end', textAlign: 'flex-end' }}>{user.date}</p> */}
-                  <i class="material-icons" style={{height:'20px',cursor:'pointer'}} onClick={_=>setShowMessage(false)}>cancel</i>
+                  <i class="material-icons"  style={{fontSize:'20px',cursor:'pointer',color:'red'}} onClick={_=>setShowMessage(false)}>cancel</i>
                 </div>
                 <p>{`Message : ${user.message}`}</p>
                 <p>{`Requested Date : ${user.date}`}</p>

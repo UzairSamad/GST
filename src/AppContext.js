@@ -38,7 +38,7 @@ const AppProvider = props => {
     const [orders, setOrders] = useState([])
     const [appUsers, setAppUsers] = useState([])
     const [appointment, setAppointment] = useState([])
-    const [customercare, setCustomerCare] = useState("")
+    const [customercare, setCustomerCare] = useState([])
 
     const getProduct = async () => {
         setIsloading(true)

@@ -85,17 +85,22 @@ function EditOrder(props) {
             <Row>
                 {data.orderDetails.order.map((data, index) => {
                     return (
-                        <Row>
-                            <Col md="4">
-                                <img src={data.image} style={{ height: 100, width: 100 }} />
-                            </Col>
-                            <Col md="4">
-                                {data.count}
-                            </Col>
-                            <Col md="4">
-                                {data.count}
-                            </Col>
-                        </Row>
+
+                                <Col md="2" sm="12" style={{
+                                    backgroundColor: 'white',
+                                    textAlign: 'center',
+                                    borderRadius: '10px',
+                                    boxShadow:' 2px 2px silver',
+                                    padding: '8px',
+                                }} >
+                                    <div style={{elevation:4}}>
+                                        <img src={data.image} style={{ height: 100, width: "80%",borderRadius:'5px' }} />
+                                        <span style={{display:'block'}}>{`Product Name: ${data.name}`}</span>
+                                        <span>{`Quantity: ${data.count}`}</span>
+                                    </div>
+                                </Col>
+                        
+
                     )
 
                 })
