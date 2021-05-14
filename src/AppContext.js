@@ -19,7 +19,8 @@ import {
     get_promotions,
     create_promotion,
     get_all_orders,
-    customer_care
+    customer_care,
+    update_orderStatus
 } from './WebApiServices/WebServices';
 import { createResource, deleteResource, getResource, updateResource } from './WebApiServices/SimpleApiCalls';
 import ErrorHelper from './views/components/Alert/ErrorHelper';
@@ -280,6 +281,19 @@ const AppProvider = props => {
         }
     }
 
+    const updateProductStatus = async (data, id) => {
+        setIsloading(true)
+        try {
+            let res = await updateResource(`${update_orderStatus}/${id}`, data)
+            successHelper.handleSuccess('Status  Updated Successfully', true);
+            // window.location = '/orders'
+            setIsloading(false);
+        } catch (error) {
+            ErrorHelper.handleErrors(error, true);
+            setIsloading(false);
+        }
+    }
+
     const deleteCategory = async (id) => {
         setIsloading(true)
 
@@ -359,7 +373,8 @@ const AppProvider = props => {
                     getAllOrders,
                     orders,
                     getCustomerCare,
-                    customercare
+                    customercare,
+                    updateProductStatus
                 }}
             >
                 {props.children}

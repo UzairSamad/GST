@@ -19,7 +19,7 @@ import { AppContext } from '../AppContext'
 import Loader from './components/Loader'
 
 const Orders = (props) => {
-  const tableHeader = ['Product Id', 'Payment Type', 'Status', 'Total Price', 'Date']
+  const tableHeader = ['Order Id', 'Payment Type', 'Status', 'Total Price', 'Date']
   const tableDisplayData = ['name', 'description', 'status', 'price']
   const context = useContext(AppContext)
   const { isLoading, getAllOrders, orders } = context
