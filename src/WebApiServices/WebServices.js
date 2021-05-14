@@ -51,3 +51,13 @@ export const get_all_orders = `${baseUrl}/api/allOrder`
 export const update_orderStatus = `${baseUrl}/api/updateOrderStatus`
 
 
+// settings
+export const get_settings = `${baseUrl}/api/getSettings`
+export const update_privacyPolicy = `${baseUrl}/api/updateOrderStatus`
+export const update_Aboutus = `${baseUrl}/api/updateAbout`
+export const update_deliveryCharges = `${baseUrl}/api/updateSettings`
+
+
+
+
+
