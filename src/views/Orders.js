@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext,useState } from "react";
 import {
   Container,
   Row,
@@ -20,6 +20,8 @@ import Loader from './components/Loader'
 
 const Orders = (props) => {
   const tableHeader = ['Order Id', 'Payment Type', 'Status', 'Total Price', 'Date']
+  const [searchText, setSearchText] = useState('')
+
   const tableDisplayData = ['name', 'description', 'status', 'price']
   const context = useContext(AppContext)
   const { isLoading, getAllOrders, orders } = context
@@ -34,13 +36,22 @@ const Orders = (props) => {
 
       {/* Page Header */}
       <Row noGutters className="page-header py-4">
-        <Col md="6">
-          <PageTitle sm="4" title="Order Status" className="text-sm-left" />
+        <Col md="4">
+          <PageTitle sm="12" title="Order Status" className="text-sm-left" />
         </Col>
+        <Col md="6">
+          <FormInput
+            id="feEmailAddress"
+            type="email"
+            placeholder="Search"
+            onChange={(e) => setSearchText(e.target.value)}
+            value={searchText}
+          />
+          </Col>
 
       </Row>
 
-      <OrderStatusTable props={props} tableHead={tableHeader} tableBody={orders} tableDisplayData={tableDisplayData} />
+      <OrderStatusTable searchText={searchText} props={props} tableHead={tableHeader} tableBody={orders} tableDisplayData={tableDisplayData} />
     </Container>
   );
 }

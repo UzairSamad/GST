@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 
 import PageTitle from "./PageTitle";
 
-const CustomTable = ({ tableHead, tableBody, tableDisplayData, onEditNavigate, props ,titleEdit,handleDelete}) => {
+const CustomTable = ({ tableHead, tableBody, tableDisplayData, onEditNavigate, props, titleEdit, handleDelete, searchText }) => {
+    const [tableData, setTableData] = useState(tableBody)
     const handleEdit = (rowData) => {
         props.history.push({
             pathname: onEditNavigate,
             state: { data: rowData, title: titleEdit }
         })
     }
+    React.useEffect(() => {
 
-    const onDelete= (data)=>{
+        setTableData(tableBody)
+
+        if (searchText.length > 0) { 
+            const results = tableData.filter(item => {
+				return item.name.toLowerCase().includes(searchText.toLowerCase());
+			});
+            setTableData(results)
+        }
+    }, [searchText,tableBody])
+
+    const onDelete = (data) => {
         handleDelete(data._id)
     }
     return (
@@ -55,9 +67,9 @@ const CustomTable = ({ tableHead, tableBody, tableDisplayData, onEditNavigate, p
                                 <tbody>
                                     {
 
-                                        tableBody.map(row => {
+                                        tableData.map(row => {
                                             return (
-                                                <tr style={{cursor:'pointer'}} >
+                                                <tr style={{ cursor: 'pointer' }} >
                                                     {
                                                         tableDisplayData.map(val => {
                                                             return (
@@ -69,7 +81,7 @@ const CustomTable = ({ tableHead, tableBody, tableDisplayData, onEditNavigate, p
                                                     <td onClick={_ => handleEdit(row)} style={{ paddingTop: '30px', textAlign: 'center', cursor: 'pointer' }}>
                                                         <i class="material-icons">edit</i>
                                                     </td>
-                                                    <td onClick={_=>onDelete(row)} style={{ paddingTop: '30px', cursor: 'pointer' }}>
+                                                    <td onClick={_ => onDelete(row)} style={{ paddingTop: '30px', cursor: 'pointer' }}>
                                                         <i class="material-icons">delete</i>
 
                                                     </td>

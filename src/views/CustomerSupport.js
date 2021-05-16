@@ -99,15 +99,15 @@ const CustomerSupport = (props) => {
                   }
                   } className="border containersssss">
                     <div style={{ display: 'flex', justifyContent: 'space-between' }} >
-                      {/* <div style={{ marginTop: "20%" }}>
-                        <img src={data.img} class="rounded-circle user_img" />
-                      </div> */}
-                      <div class="user_info" style={{ marginTop: "2%", marginLeft: "10px" }}>
+                      <div style={{ marginTop: "4%" }}>
+                        <img src={data.image} class="rounded-circle user_img" style={{ height: '50px', width: '50px' }} />
+                      </div>
+                      <div class="user_info" style={{ marginTop: "3%" }}>
                         <span>{`Name: ${data.userName}`}</span><br />
                         <span>{`Title: ${data.title}`}</span>
                       </div>
                       <div class="user_info" style={{ marginTop: "50px" }}>
-                        <span>{data.date}</span>
+                        <span style={{ fontSize: '10px' }}>{data.date}</span>
                       </div>
                     </div>
                   </Col>
@@ -125,14 +125,17 @@ const CustomerSupport = (props) => {
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', borderBottom: '1px solid #0000000A', paddingBottom: '15px', marginBottom: '20px' }}>
                   <div style={{ display: 'flex', flexDirection: 'row' }}>
 
-                    {/* <img
+                    <img
                       className="user-avatar rounded-circle mr-2"
-                      src="https://www.pngjoy.com/pngm/186/3682484_harambe-face-sample-avatar-hd-png-download.png" alt="User Avatar"
-                      style={{ width: '45px', height: '45px' }}
-                    /> */}
+                      src={userDetails.image} alt="User Avatar"
+                      style={{ width: '50px', height: '50px' }}
+                    />
+
                     <div>
                       <p style={{ marginBottom: '0px' }} >To: Admin</p>
-                      <p style={{ marginBottom: '0px' }} >From : {userDetails.userName}</p>
+                      <p style={{ marginBottom: '0px', fontSize: '12px' }} >From : {userDetails.userName}</p>
+                      <p style={{ marginBottom: '0px', fontSize: '12px' }} >Email : {userDetails.email}</p>
+                      <p style={{ marginBottom: '0px', fontSize: '12px' }} >Phone : {userDetails.phone}</p>
                       {/* <p style={{ fontSize: '14px' }}>to me</p> */}
                     </div>
 

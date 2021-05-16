@@ -210,18 +210,18 @@ const AppProvider = props => {
             setIsloading(false);
         }
     }
-    const updateOrderStatus = async (data, id) => {
-        setIsloading(true)
-        try {
-            let res = await updateResource(`${update_product}/${id}`, {})
-            successHelper.handleSuccess('Order Updated Succesfully', true);
-            window.location = '/orders'
-            setIsloading(false);
-        } catch (error) {
-            ErrorHelper.handleErrors(error, true);
-            setIsloading(false);
-        }
-    }
+    // const updateOrderStatus = async (data, id) => {
+    //     setIsloading(true)
+    //     try {
+    //         let res = await updateResource(`${update_product}/${id}`, {})
+    //         successHelper.handleSuccess('Order Updated Succesfully', true);
+    //         window.location = '/orders'
+    //         setIsloading(false);
+    //     } catch (error) {
+    //         ErrorHelper.handleErrors(error, true);
+    //         setIsloading(false);
+    //     }
+    // }
     const updateAppointment = async (data, id) => {
         setIsloading(true)
 
@@ -369,7 +369,7 @@ const AppProvider = props => {
                     updatePromotion,
                     deletePromotion,
                     promotions,
-                    updateOrderStatus,
+                    // updateOrderStatus,
                     getAllOrders,
                     orders,
                     getCustomerCare,

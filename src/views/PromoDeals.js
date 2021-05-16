@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useEffect ,useContext} from "react";
+import React, { useEffect ,useContext,useState} from "react";
 import {
   Container,
   Row,
@@ -22,6 +22,8 @@ import Loader from './components/Loader'
 const PromoCodes = (props) => {
   const tableHeader = [ 'Image', 'Product Name', 'Before Price', 'After Price']
   const tableDisplayData = ['image', 'name', 'price', 'afterPrice',]
+  const [searchText, setSearchText] = useState('')
+
   const context = useContext(AppContext)
   const { getPromotions, isLoading, promotions, deletePromotion, } = context
 
@@ -90,6 +92,8 @@ const PromoCodes = (props) => {
             id="feEmailAddress"
             type="email"
             placeholder="Search"
+            onChange={(e) => setSearchText(e.target.value)}
+            value={searchText}
           />          </Col>
         <Col md="2">
         </Col>
@@ -100,7 +104,7 @@ const PromoCodes = (props) => {
         </Col>
       </Row>
 
-      <CustomTable handleDelete={deletePromotion} titleEdit='Edit PromoCode and Deals' props={props} onEditNavigate='/addEdit-promocode' tableHead={tableHeader} tableBody={promotions} tableDisplayData={tableDisplayData} />
+      <CustomTable searchText={searchText} handleDelete={deletePromotion} titleEdit='Edit PromoCode and Deals' props={props} onEditNavigate='/addEdit-promocode' tableHead={tableHeader} tableBody={promotions} tableDisplayData={tableDisplayData} />
     </Container>
   );
 }

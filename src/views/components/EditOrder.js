@@ -40,11 +40,11 @@ function EditOrder(props) {
     const [orderStatus, setOrderStatus] = useState(data.orderDetails.status)
 
     const handleConfirm = () => {
-        updateProductStatus({ status: orderStatus }, data.orderDetails._id)
+        updateProductStatus({ status: orderStatus, userId: data.orderDetails.userId }, data.orderDetails._id)
     }
     return (
         <Container fluid className="main-content-container px-4">
-            <Loader isLoading={isLoading} />
+            <Loader isloading={isLoading} />
 
             <Row noGutters className="page-header py-4">
                 <PageTitle sm="4" title={`Change Order Status`} className="text-sm-left" />
@@ -59,6 +59,7 @@ function EditOrder(props) {
                                     <label htmlFor="Product Name">Status</label>
                                     <FormSelect onChange={e => setOrderStatus(e.target.value)} value={orderStatus}>
                                         <option>Pending</option>
+                                        <option>Accepted</option>
                                         <option>Rejected</option>
                                         <option>Delivered</option>
                                     </FormSelect>
@@ -86,21 +87,21 @@ function EditOrder(props) {
                 {data.orderDetails.order.map((data, index) => {
                     return (
 
-                                <Col md="2" sm="12" style={{
-                                    backgroundColor: 'white',
-                                    textAlign: 'center',
-                                    borderRadius: '10px',
-                                    boxShadow:' 2px 2px silver',
-                                    padding: '8px',
-                                    margin:10
-                                }} >
-                                    <div style={{elevation:4}}>
-                                        <img src={data.image} style={{ height: 100, width: "80%",borderRadius:'5px' }} />
-                                        <span style={{display:'block'}}>{`Product Name: ${data.name}`}</span>
-                                        <span>{`Quantity: ${data.count}`}</span>
-                                    </div>
-                                </Col>
-                        
+                        <Col md="2" sm="12" style={{
+                            backgroundColor: 'white',
+                            textAlign: 'center',
+                            borderRadius: '10px',
+                            boxShadow: ' 2px 2px silver',
+                            padding: '8px',
+                            margin: 10
+                        }} >
+                            <div style={{ elevation: 4 }}>
+                                <img src={data.image} style={{ height: 100, width: "80%", borderRadius: '5px' }} />
+                                <span style={{ display: 'block', wordBreak: "break-word" }}>{`Product Name: ${data.name}`}</span>
+                                <span>{`Quantity: ${data.count}`}</span>
+                            </div>
+                        </Col>
+
 
                     )
 

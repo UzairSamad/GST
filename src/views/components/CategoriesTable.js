@@ -1,13 +1,27 @@
-import React from "react";
+import React,{useState} from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 
 import AddEditCategory from "./AddEditCategory";
 import { AppContext } from '../../AppContext'
 import Loader from '../components/Loader'
 
-const CustomTable = ({ tableHead, tableBody, tableDisplayData }) => {
+const CustomTable = ({ tableHead, tableBody, tableDisplayData,searchText }) => {
+    const [tableData, setTableData] = useState(tableBody)
+
     const [isOpen, setIsOPen] = React.useState(false)
     const context = React.useContext(AppContext)
+
+    React.useEffect(() => {
+
+        setTableData(tableBody)
+
+        if (searchText.length > 0) { 
+            const results = tableData.filter(item => {
+				return item.name.toLowerCase().includes(searchText.toLowerCase());
+			});
+            setTableData(results)
+        }
+    }, [searchText,tableBody])
 
     const [data, setData] = React.useState({ name: '', id: '' })
     const { deleteCategory,isloading } = context
@@ -52,7 +66,7 @@ const CustomTable = ({ tableHead, tableBody, tableDisplayData }) => {
                                 <tbody>
                                     {
 
-                                        tableBody.map(row => {
+                                        tableData.map(row => {
                                             return (
                                                 <tr style={{ cursor: 'pointer' }}>
                                                     {

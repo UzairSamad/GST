@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React from "react";
+import React,{useState} from "react";
 import {
   Container,
   Row,
@@ -23,6 +23,7 @@ import Loader from "./components/Loader"
 const Categories = () => {
   const [isOpen, setIsOPen] = React.useState(false)
   const [categoryName, setCategoryName] = React.useState('')
+  const [searchText, setSearchText] = useState('')
   const contextt = React.useContext(AppContext)
   const {
     getCategories,
@@ -79,8 +80,17 @@ const Categories = () => {
       {/* Page Header */}
       <Row noGutters className="page-header py-4">
         <Col md="4">
-          <PageTitle sm="4" title="Categories" className="text-sm-left" />
+          <PageTitle sm="12" title="Categories" className="text-sm-left" />
         </Col>
+        <Col md="4">
+          <FormInput
+            id="feEmailAddress"
+            type="email"
+            placeholder="Search"
+            onChange={(e) => setSearchText(e.target.value)}
+            value={searchText}
+          />
+          </Col>
       </Row>
       <Row style={{ marginLeft: '12px' }} noGutters className="page-header py-4">
         <Col md="4" style={{ marginRight: '10px' }}>
@@ -100,7 +110,7 @@ const Categories = () => {
         </Col>
       </Row>
       <Row style={{ marginLeft: '10px' }}>
-        <CategoriesTable tableHead={tableHeader} tableBody={categories} tableDisplayData={tableDisplayData} />
+        <CategoriesTable  searchText={searchText} tableHead={tableHeader} tableBody={categories} tableDisplayData={tableDisplayData} />
 
       </Row>
       {/* <AddEditCategory data={{ name: '', id: '' }} isOpen={isOpen} onClose={_ => setIsOPen(false)} title='Add Category' /> */}

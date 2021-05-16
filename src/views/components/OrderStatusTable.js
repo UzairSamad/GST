@@ -1,10 +1,25 @@
-import React from "react";
+import React,{useState} from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 
 import PageTitle from "./PageTitle";
 
-const OrderTable = ({ tableHead, tableBody, tableDisplayData, props }) => {
+const OrderTable = ({ tableHead, tableBody, tableDisplayData, props ,searchText}) => {
     console.log(tableBody,tableDisplayData, "tableBodytableBodytableBodytableBody");
+    const [tableData, setTableData] = useState(tableBody)
+
+
+    React.useEffect(() => {
+
+        setTableData(tableBody)
+
+        if (searchText.length > 0) { 
+            const results = tableData.filter(item => {
+                console.log(item.orderDetails.orderId,'itemitem')
+				return item.orderDetails.orderId.includes(searchText);
+			});
+            setTableData(results)
+        }
+    }, [searchText,tableBody])
    return (
         <Container fluid className="main-content-container" style={{ marginLeft: '-10px' }}>
             {/* Page Header */}
@@ -31,7 +46,7 @@ const OrderTable = ({ tableHead, tableBody, tableDisplayData, props }) => {
                                 <tbody>
                                     {
 
-                                        tableBody.map(row => {
+                                        tableData.map(row => {
                                             console.log(row,"rowrowrowrowrowrow");
                                             return (
                                                 <tr style={{ cursor: 'pointer' }} onClick={_ => props.history.push({ pathname: "editorder", state: { data: row } })}>
