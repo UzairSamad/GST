@@ -33,7 +33,6 @@ function AddProduct(props) {
         description: data.description,
         image: data.image,
         category: data.category,
-        discount: data.discount,
         id: data._id
     })
     const handleCreate = () => {
@@ -41,7 +40,6 @@ function AddProduct(props) {
             name: productData.name,
             image: productData.image,
             price: productData.price,
-            discount: productData.discount,
             description: productData.description,
             category: productData.category
         }
@@ -51,9 +49,7 @@ function AddProduct(props) {
             ErrorHelper.handleErrors('Product Price is required', true)
 
         }
-        else if (data.price < data.discount) {
-            ErrorHelper.handleErrors("Price Cannot be less than discount", true)
-        }
+
 
         else {
             createProduct(data)
@@ -66,7 +62,6 @@ function AddProduct(props) {
             name: productData.name,
             image: productData.image,
             price: productData.price,
-            discount: productData.discount,
             description: productData.description,
             category: productData.category
         }
@@ -150,14 +145,7 @@ function AddProduct(props) {
                                     </InputGroup>
                                 </FormGroup>
                             </Col>
-                            <Col sm="12" md="4">
-                                <FormGroup>
-                                    <label htmlFor="Price">Discount</label>
-                                    <InputGroup className="mb-3">
-                                        <FormInput value={productData.discount} onChange={e => setProductData({ ...productData, discount: e.target.value })} placeholder="Discount" />
-                                    </InputGroup>
-                                </FormGroup>
-                            </Col>
+                          
                             <Col sm="12" md="4">
                                 <FormGroup>
                                     <label htmlFor="Product Name">Category</label>
