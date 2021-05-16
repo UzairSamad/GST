@@ -286,7 +286,7 @@ const AppProvider = props => {
         try {
             let res = await updateResource(`${update_orderStatus}/${id}`, data)
             successHelper.handleSuccess('Status  Updated Successfully', true);
-            // window.location = '/orders'
+            window.location = '/orders'
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);

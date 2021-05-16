@@ -122,7 +122,7 @@ const CustomerSupport = (props) => {
             showMessage ?
               <>
 
-                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', borderBottom: '1px solid #0000000A', paddingBottom: '15px', marginBottom:'20px'}}>
+                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', borderBottom: '1px solid #0000000A', paddingBottom: '15px', marginBottom: '20px' }}>
                   <div style={{ display: 'flex', flexDirection: 'row' }}>
 
                     {/* <img
@@ -131,21 +131,22 @@ const CustomerSupport = (props) => {
                       style={{ width: '45px', height: '45px' }}
                     /> */}
                     <div>
-                      <p style={{ marginBottom: '0px' }} >{userDetails.userName}</p>
+                      <p style={{ marginBottom: '0px' }} >To: Admin</p>
+                      <p style={{ marginBottom: '0px' }} >From : {userDetails.userName}</p>
                       {/* <p style={{ fontSize: '14px' }}>to me</p> */}
                     </div>
 
                   </div>
-<div style={{display:'flex',flexDirection:'row'}}>
+                  <div style={{ display: 'flex', flexDirection: 'row' }}>
 
-                  <p style={{ marginTop: '5px', alignSelf: 'flex-end', textAlign: 'flex-end'}}>{userDetails.date}</p>
-                  <i class="material-icons" style={{fontSize:'20px',cursor:'pointer',marginTop:'-20px',marginLeft:'-10px',color:'red'}} onClick={_=>setShowMessage(false)}>cancel</i>
+                    <p style={{ marginTop: '5px', alignSelf: 'flex-end', textAlign: 'flex-end' }}>{userDetails.date}</p>
+                    <i class="material-icons" style={{ fontSize: '20px', cursor: 'pointer', marginTop: '-20px', marginLeft: '-10px', color: 'red' }} onClick={_ => setShowMessage(false)}>cancel</i>
                   </div>
 
 
                 </div>
                 <p >{`Title : ${userDetails.title}`}</p>
-                <p>{`Question : ${userDetails.question}`}</p>
+                <p>{`${userDetails.question}`}</p>
 
 
 

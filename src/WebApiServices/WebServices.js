@@ -1,4 +1,5 @@
 const baseUrl = 'https://minisolution-backend.herokuapp.com'
+// const baseUrl = 'http://192.168.0.106:5000'
 // clientAuthenticationbeforelogin
 export const authenticateClientBeforeLogin = `${baseUrl}/authenticate`;
 
@@ -53,10 +54,11 @@ export const update_orderStatus = `${baseUrl}/api/updateOrderStatus`
 
 // settings
 export const get_settings = `${baseUrl}/api/getSettings`
-export const update_privacyPolicy = `${baseUrl}/api/updateOrderStatus`
+export const update_privacyPolicy = `${baseUrl}/api/updatePolicy`
 export const update_Aboutus = `${baseUrl}/api/updateAbout`
 export const update_deliveryCharges = `${baseUrl}/api/updateSettings`
-
+export const get_about_Us = `${baseUrl}/api/getAboutUs`
+export const get_privacy_policy = `${baseUrl}/api/getPrivacy`
 
 //customer care 
 
