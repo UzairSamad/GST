@@ -59,7 +59,16 @@ const Login = (props) => {
       try {
         let response = await userAuthResource(user_login, data)
         setLoading(false)
-        props.history.push('/dashboard')
+        if (response.data.error) {
+          ErrorHelper.handleErrors(response.data.error, true)
+
+        } else {
+          localStorage.setItem('user_token',response.data.data)
+          props.history.push('/dashboard')
+
+        }
+
+
       } catch (error) {
         ErrorHelper.handleErrors(error.response.data.error, true)
         setLoading(false)
@@ -121,7 +130,7 @@ const Login = (props) => {
           </Row>
           <Row>
             <Col sm="0" md="3"></Col>
-            {!loading &&   <Col sm="12" md="6" className='text-center'>
+            {!loading && <Col sm="12" md="6" className='text-center'>
               <Button style={{ width: '100%', backgroundColor: '#43425D', color: '#FFF', bordercolor: '#FFF' }} className="mb-2" onClick={handleSubmit}>
                 Login
                 </Button>

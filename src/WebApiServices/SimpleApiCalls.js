@@ -60,7 +60,7 @@ const updateResource = (api, data) => {
 	return new Promise((resolve, reject) => {
 		axios
 			.put(`${api}`, data, {
-				headers: { 'xt-user-token': token }
+				headers: { 'token': token }
 			})
 			.then(response => {
 				resolve(response);
