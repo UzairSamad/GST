@@ -224,15 +224,16 @@ const AppProvider = props => {
     // }
     const updateAppointment = async (data, id) => {
         setIsloading(true)
-
         try {
             let res = await updateResource(`${update_appointmentStatus}/${id}`, data)
             successHelper.handleSuccess('Status Updated Successfully', true);
             getAllAppointment()
             setIsloading(false);
+            window.location.reload()
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
             setIsloading(false);
+            window.location.reload()
         }
     }
 
