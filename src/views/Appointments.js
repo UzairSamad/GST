@@ -76,7 +76,7 @@ const Appointments = (props) => {
   }, [])
 
   const handleAppointment = (value) => {
-    updateAppointment({ status: value ,userId:user._id},user.userId)
+    updateAppointment({ status: value,userId:user.userid }, user._id)
   }
   return (
     <Container fluid className="main-content-container px-4">

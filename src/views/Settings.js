@@ -16,7 +16,7 @@ import {
   FormTextarea
 } from "shards-react";
 import { createResource, deleteResource, getResource, updateResource } from '../WebApiServices/SimpleApiCalls';
-import { get_settings, update_Aboutus, update_deliveryCharges, update_privacyPolicy } from '../WebApiServices/WebServices';
+import { get_settings, update_Aboutus, update_deliveryCharges, update_privacyPolicy, get_about_Us, get_privacy_policy } from '../WebApiServices/WebServices';
 import Loader from './components/Loader'
 import successHelper from './components/Alert/successHelper'
 import ErrorHelper from './components/Alert/ErrorHelper'
@@ -24,17 +24,20 @@ import ErrorHelper from './components/Alert/ErrorHelper'
 import PageTitle from "./components/PageTitle";
 
 const Settings = () => {
-  const [deliverycharges, setDeliveryCharges] = useState('')
+  const [deliveryCharges, setDeliveryCharges] = useState('')
   const [vat, setVat] = useState('')
   const [aboutUs, setAboutUs] = useState('')
   const [privacyPolicy, setPrivacyPolicy] = useState('')
   const [isLoading, setIsloading] = useState(false);
-
-
+  const [settingsData, setSettingsData] = useState("")
+  const [aboutData, setAboutData] = useState("")
+  const [privacyData, setPrivacyData] = useState("")
 
 
   useEffect(() => {
     getSettings()
+    getAboutUs()
+    getPrivacyPolicy()
   }, [])
 
 
@@ -43,8 +46,8 @@ const Settings = () => {
     setIsloading(true)
     try {
       let res = await updateResource(`${update_Aboutus}/${id}`, data)
-      successHelper.handleSuccess('Product Updated Successfully', true);
-      window.location = '/products'
+      successHelper.handleSuccess('About Updated Successfully', true);
+      window.location = '/settings'
 
       setIsloading(false);
     } catch (error) {
@@ -56,8 +59,8 @@ const Settings = () => {
     setIsloading(true)
     try {
       let res = await updateResource(`${update_privacyPolicy}/${id}`, data)
-      successHelper.handleSuccess('Product Updated Successfully', true);
-      window.location = '/products'
+      successHelper.handleSuccess('Privacy Updated Successfully', true);
+      window.location = '/settings'
       setIsloading(false);
     } catch (error) {
       ErrorHelper.handleErrors(error, true);
@@ -68,8 +71,8 @@ const Settings = () => {
     setIsloading(true)
     try {
       let res = await updateResource(`${update_deliveryCharges}/${id}`, data)
-      successHelper.handleSuccess('Product Updated Successfully', true);
-      window.location = '/products'
+      successHelper.handleSuccess('Updated Successfully', true);
+      window.location = '/settings'
 
       setIsloading(false);
     } catch (error) {
@@ -83,12 +86,57 @@ const Settings = () => {
     try {
       let res = await getResource(get_settings);
       console.log(res, 'resssssssssss')
+      setVat(res.data.data[0].vat)
+      setDeliveryCharges(res.data.data[0].deliveryCharges)
+      setSettingsData(res.data.data[0])
       setIsloading(false);
     } catch (error) {
       ErrorHelper.handleErrors(error, true);
       setIsloading(false);
     }
   }
+  const changeCharges = () => {
+    let data = {
+      deliveryCharges,
+      vat
+    }
+    updateDeliveryCharges(data, settingsData._id)
+  }
+
+  const changeAboutUs = () => {
+    let data = {
+      about: aboutUs
+    }
+    updateAboutUs(data, aboutData._id)
+  }
+
+  const changePrivacyPolicy = () => {
+    let data = {
+      policy: privacyPolicy
+    }
+    updatePrivacyPolicy(data, privacyData._id)
+  }
+
+  const getAboutUs = async () => {
+    try {
+      const res = await getResource(get_about_Us)
+      setAboutUs(res.data.data[0].about)
+      setAboutData(res.data.data[0])
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  const getPrivacyPolicy = async () => {
+    try {
+      const res = await getResource(get_privacy_policy)
+      setPrivacyPolicy(res.data.data[0].policy)
+      setPrivacyData(res.data.data[0])
+    } catch (error) {
+      alert(error)
+    }
+  }
+  console.log(aboutUs, "ABBBBBBBBBBBBBBBB");
 
   return (
     <Container fluid className="main-content-container px-4">
@@ -105,7 +153,7 @@ const Settings = () => {
             <label htmlFor="Product Name">Delivery Charges</label>
             <InputGroup className="mb-3">
               <FormInput
-                value={deliverycharges} placeholder="Delivery Charges" onChange={e => setDeliveryCharges(e.target.value)} />
+                value={deliveryCharges} placeholder="Delivery Charges" onChange={e => setDeliveryCharges(e.target.value)} />
             </InputGroup>
           </FormGroup>
         </Col>
@@ -122,8 +170,8 @@ const Settings = () => {
           <FormGroup className="mb-3">
             <label className="mb-4" htmlFor="Product Name"  ></label>
             <InputGroup className="mb-3">
-              <Button style={{ width: '100%' }} theme="primary" >
-                {`Update Deleivery Charges & Vat`}
+              <Button style={{ width: '100%' }} theme="primary" onClick={changeCharges} >
+                {`Update`}
               </Button>
             </InputGroup>
           </FormGroup>
@@ -146,7 +194,7 @@ const Settings = () => {
         <Col sm="12" md="9">
         </Col>
         <Col sm="12" md="3">
-          <Button style={{ width: '100%' }} theme="primary" className="mb-2">
+          <Button style={{ width: '100%' }} theme="primary" className="mb-2" onClick={changeAboutUs}>
             Update About Us
          </Button>
         </Col>
@@ -165,7 +213,7 @@ const Settings = () => {
         <Col sm="12" md="9">
         </Col>
         <Col sm="12" md="3">
-          <Button style={{ width: '100%' }} theme="primary" className="mb-2">
+          <Button style={{ width: '100%' }} theme="primary" className="mb-2" onClick={changePrivacyPolicy}>
             Update Privacy Policy
          </Button>
         </Col>

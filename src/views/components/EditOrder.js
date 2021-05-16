@@ -59,14 +59,14 @@ function EditOrder(props) {
                                     <label htmlFor="Product Name">Status</label>
                                     <FormSelect onChange={e => setOrderStatus(e.target.value)} value={orderStatus}>
                                         <option>Pending</option>
-                                        <option>Reject</option>
-                                        <option>Deliverd</option>
+                                        <option>Rejected</option>
+                                        <option>Delivered</option>
                                     </FormSelect>
                                 </FormGroup>
                             </Col>
                             <Col sm="12" md="6">
                                 <FormGroup>
-                                    <label htmlFor="Price">Date</label>
+                                    <label htmlFor="Price">Order Date</label>
                                     <InputGroup className="mb-3">
                                         <FormInput value={productData.date} placeholder="Date" />
                                     </InputGroup>
@@ -92,6 +92,7 @@ function EditOrder(props) {
                                     borderRadius: '10px',
                                     boxShadow:' 2px 2px silver',
                                     padding: '8px',
+                                    margin:10
                                 }} >
                                     <div style={{elevation:4}}>
                                         <img src={data.image} style={{ height: 100, width: "80%",borderRadius:'5px' }} />
