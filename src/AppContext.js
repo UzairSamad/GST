@@ -40,6 +40,10 @@ const AppProvider = props => {
     const [appointment, setAppointment] = useState([])
     const [customercare, setCustomerCare] = useState([])
 
+useEffect(()=>{
+getAllOrders()
+},[])
+
     const getProduct = async () => {
         setIsloading(true)
 
