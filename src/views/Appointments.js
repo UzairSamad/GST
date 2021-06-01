@@ -100,7 +100,7 @@ const Appointments = (props) => {
                   }} className="border containersssss">
                     <div class="d-flex vertical-center">
                       <div style={{ marginTop: "20%", marginBottom: 15 }}>
-                        <img src={data.img ? data.img : ProfilePic} class="rounded-circle user_img" />
+                        <img src={data.image ? data.image : ProfilePic} class="rounded-circle user_img" />
                       </div>
                       <div class="user_info" style={{ marginTop: "15%", marginLeft: "10px", marginBottom: 50 }}>
                         <span>{data.name}</span><br />
@@ -130,12 +130,12 @@ const Appointments = (props) => {
 
                     <img
                       className="user-avatar rounded-circle mr-2"
-                      src="https://www.pngjoy.com/pngm/186/3682484_harambe-face-sample-avatar-hd-png-download.png" alt="User Avatar"
+                      src={user.image} alt="User Avatar"
                       style={{ width: '45px', height: '45px' }}
                     />
                     <div>
                       <p style={{ marginBottom: '0px' }} >{user.name}</p>
-                      <p style={{ fontSize: '14px' }}>to me</p>
+                      <p style={{ fontSize: '14px' }}>to Admin</p>
                     </div>
 
                   </div>

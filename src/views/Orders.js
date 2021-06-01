@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useEffect, useContext,useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import {
   Container,
   Row,
@@ -12,7 +12,7 @@ import {
   Button,
   FormInput
 } from "shards-react";
-
+import axios from 'axios';
 import PageTitle from "./components/PageTitle";
 import OrderStatusTable from "./components/OrderStatusTable";
 import { AppContext } from '../AppContext'
@@ -25,14 +25,22 @@ const Orders = (props) => {
   const tableDisplayData = ['name', 'description', 'status', 'price']
   const context = useContext(AppContext)
   const { isLoading, getAllOrders, orders } = context
- 
-  useEffect(() => {
-    getAllOrders()
 
+  useEffect(() => {
+
+    axios({
+      url: "https://minisolution-backend.herokuapp.com/api/changeReadStatus",
+      method:"post"
+    }).then(res => {
+      getAllOrders()
+    }).catch(err => {
+      console.log(err, "ERRRRRRRRRRRRRRRRRR");
+    })
   }, [])
+
   return (
     <Container fluid className="main-content-container px-4">
-            <Loader isloading={isLoading} />
+      <Loader isloading={isLoading} />
 
       {/* Page Header */}
       <Row noGutters className="page-header py-4">
@@ -47,7 +55,7 @@ const Orders = (props) => {
             onChange={(e) => setSearchText(e.target.value)}
             value={searchText}
           />
-          </Col>
+        </Col>
 
       </Row>
 

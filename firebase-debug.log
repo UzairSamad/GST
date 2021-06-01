@@ -1,0 +1,13 @@
+[debug] [2021-05-16T13:57:33.118Z] ----------------------------------------------------------------------
+[debug] [2021-05-16T13:57:33.120Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Sinan Lakhani\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-05-16T13:57:33.120Z] CLI Version:   9.10.0
+[debug] [2021-05-16T13:57:33.121Z] Platform:      win32
+[debug] [2021-05-16T13:57:33.121Z] Node Version:  v14.16.0
+[debug] [2021-05-16T13:57:33.121Z] Time:          Sun May 16 2021 06:57:33 GMT-0700 (Pacific Daylight Time)
+[debug] [2021-05-16T13:57:33.122Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-05-16T13:57:33.129Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-05-16T13:57:33.129Z] > authorizing via signed-in user (minisolutionbackend@gmail.com)
+[debug] [2021-05-16T13:57:33.129Z] [iam] checking project mini-front for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-05-16T13:57:33.130Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/mini-front:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}

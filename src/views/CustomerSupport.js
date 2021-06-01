@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   Row,
@@ -64,13 +64,16 @@ const CustomerSupport = (props) => {
 
   const context = useContext(AppContext)
   const { getCustomerCare, customercare } = context
-
+  const [data, setData] = useState([])
   console.log(customercare, "GET_CUSTOMMMMMM");
 
   useEffect(() => {
     getCustomerCare()
   }, [])
 
+
+
+  const [searchText, setSearchText] = useState('')
   const [showMessage, setShowMessage] = React.useState(false)
   const [userDetails, setUserDetails] = React.useState({
     date: "",
@@ -79,6 +82,15 @@ const CustomerSupport = (props) => {
     __v: 0,
     _id: ""
   })
+
+  console.log(searchText, "asdasdsd");
+
+  let result = customercare.filter(item => {
+    console.log(item, "ITEEE");
+    return item.userName.toLowerCase().includes(searchText.toLowerCase());
+  })
+
+
   return (
     <Container fluid className="main-content-container px-4">
       <Row noGutters className="page-header py-4">
@@ -88,9 +100,11 @@ const CustomerSupport = (props) => {
         <Col md="4" style={{ border: 1 }}>
           <FormInput
             placeholder="Search here"
+            onChange={(e) => setSearchText(e.target.value)}
+            value={searchText}
           />
           {
-            customercare.map((data) => {
+            result.map((data) => {
               return (
                 <>
                   <Col style={{ cursor: "pointer" }} onClick={_ => {
