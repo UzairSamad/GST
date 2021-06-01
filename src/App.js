@@ -1,17 +1,51 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Redirect } from "react-router-dom";
 import routes from "./routes";
 import withTracker from "./withTracker";
 import AppProvider from './AppContext'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/shards-dashboards.1.1.0.min.css";
+import { DefaultLayout } from "./layouts";
+import Dashboard from "./views/Dashboard";
+import Appointments from "./views/Appointments";
+import Users from "./views/Users";
+import Services from "./views/Services";
+import Orders from "./views/Orders";
+import PromoDeals from "./views/PromoDeals";
+import BlogPosts from "./views/CustomerSupport";
+import Products from "./views/Products";
+import Categories from "./views/Categories";
+import Settings from "./views/Settings";
+import Login from "./views/Login";
+import SignUp from "./views/SignUp";
+import NewPassword from "./views/NewPassword";
+import ResetPassword from "./views/ResetPassword";
+import PromotionProducts from "./views/PromotionProducts";
+import {
+  AddProduct,
+  EditOrder,
+  AddService,
+  EditAppoitment,
+  AddPromoCode
+} from './views/components'
+import CustomerSupport from "./views/CustomerSupport";
+import { createBrowserHistory } from "history";
+export const appHistory = createBrowserHistory();
 
-export default () => (
+
+
+
+
+export default (props) =>{
+
+console.log(props,'process.env.PUBLIC_URL')
+return(
   <AppProvider>
 
-    <Router basename={process.env.REACT_APP_BASENAME || ""}>
-      <div>
-        {routes.map((route, index) => {
+
+    <Router history={appHistory} >
+<div>
+    {routes.map((route, index) => {
           return (
             <Route
               key={index}
@@ -31,11 +65,11 @@ export default () => (
 
                 );
               })}
-            />
-          );
-        })}
-      </div>
+              />)})}
+              </div>
     </Router >
   </AppProvider>
 
-);
+)
+}
+;

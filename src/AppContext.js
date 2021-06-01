@@ -148,7 +148,7 @@ const AppProvider = props => {
         try {
             let res = await createResource(`${create_product}`, data)
             successHelper.handleSuccess('Product Created Successfully', true);
-            window.location = '/products'
+            window.location = '#/products'
 
             setIsloading(false);
         } catch (error) {
@@ -161,7 +161,7 @@ const AppProvider = props => {
         try {
             let res = await createResource(`${create_promotion}`, data)
             successHelper.handleSuccess('Promotion Created Successfully', true);
-            window.location = '/promo-deals'
+            window.location = '#/promo-deals'
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
@@ -173,7 +173,7 @@ const AppProvider = props => {
         try {
             let res = await createResource(create_category, data)
             successHelper.handleSuccess('Category Created Successfully', true);
-            window.location = '/cateogries'
+            window.location = '#/cateogries'
 
             getCategories()
             setIsloading(false);
@@ -188,7 +188,7 @@ const AppProvider = props => {
             let res = await createResource(`${create_service}`, data)
 
             successHelper.handleSuccess('Service Created Successfully', true);
-            window.location = '/services'
+            window.location = '#/services'
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
@@ -202,7 +202,7 @@ const AppProvider = props => {
         try {
             let res = await updateResource(`${update_product}/${id}`, data)
             successHelper.handleSuccess('Product Updated Successfully', true);
-            window.location = '/products'
+            window.location = '#/products'
 
             setIsloading(false);
         } catch (error) {
@@ -244,7 +244,7 @@ const AppProvider = props => {
 
             successHelper.handleSuccess('Category Updated Successfully', true);
             getCategories()
-            window.location = '/cateogries'
+            window.location = '#/cateogries'
 
             setIsloading(false);
         } catch (error) {
@@ -260,7 +260,7 @@ const AppProvider = props => {
             let res = await updateResource(`${update_service}/${id}`, data)
 
             successHelper.handleSuccess('Service Updated Successfully', true);
-            window.location = '/services'
+            window.location = '#/services'
 
             setIsloading(false);
         } catch (error) {
@@ -273,7 +273,7 @@ const AppProvider = props => {
         try {
             let res = await updateResource(`${update_promotion}/${id}`, data)
             successHelper.handleSuccess('Promotion Updated Successfully', true);
-            window.location = '/promo-deals'
+            window.location = '#/promo-deals'
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);
@@ -286,7 +286,7 @@ const AppProvider = props => {
         try {
             let res = await updateResource(`${update_orderStatus}/${id}`, data)
             successHelper.handleSuccess('Status  Updated Successfully', true);
-            window.location = '/orders'
+            window.location = '#/orders'
             setIsloading(false);
         } catch (error) {
             ErrorHelper.handleErrors(error, true);

@@ -24,6 +24,7 @@
     "react-spinners": "^0.10.6",
     "shards-react": "^1.0.0",
     "shortid": "^2.2.14",
+    "surge": "^0.23.0",
     "sweetalert2": "^10.16.6"
   },
   "scripts": {
