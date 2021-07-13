@@ -73,6 +73,23 @@ function EditOrder(props) {
                                     </InputGroup>
                                 </FormGroup>
                             </Col>
+                            <Col sm="12" md="6">
+                            <FormGroup>
+                                    <label htmlFor="Price">Address</label>
+                                    <InputGroup className="mb-3">
+                                        <FormInput  style={{backgroundColor:'#ffffff'}} value={data.orderDetails.address} disabled={true} />
+                                    </InputGroup>
+                                </FormGroup>
+                            </Col>
+                            <Col sm="12" md="6">
+                            <FormGroup>
+                                    <label htmlFor="Price">Payment Type</label>
+                                    <InputGroup className="mb-3">
+                                        <FormInput style={{backgroundColor:'#ffffff'}} value={data.orderDetails.paymentType} disabled={true} />
+                                    </InputGroup>
+                                </FormGroup>
+                                
+                            </Col>
 
                         </Row>
                     </Form>
