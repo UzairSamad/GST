@@ -53,7 +53,7 @@ const OrderTable = ({ tableHead, tableBody, tableDisplayData, props ,searchText}
                                                  <td>{row.orderDetails.orderId}</td>
                                                  <td>{row.orderDetails.paymentType}</td>
                                                  <td>{row.orderDetails.status}</td>
-                                                 {row.orderDetails.paymentType == 'Credit Card'? <td>{row.orderDetails.totalBill/100}</td>:<td>{row.orderDetails.totalBill}</td>}
+                                                 <td>{row.orderDetails.totalBill}</td>
                                                  <td>{row.orderDetails.Date}</td>
                                                 </tr>
                                             )
