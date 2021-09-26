@@ -30,32 +30,10 @@ export default class UserActions extends React.Component {
   render() {
     return (
       <NavItem tag={Dropdown} caret toggle={this.toggleUserActions}>
-        <DropdownToggle style={{cusrsor:'pointer'}} caret tag={NavLink} className="text-nowrap px-3">
-          <img
-            className="user-avatar rounded-circle mr-2"
-            src={require("./../../../../images/avatars/0.jpg")}
-            alt="User Avatar"
-          />{" "}
-          <span className="d-none d-md-inline-block" style={{cursor:'pointer'}} >Admin</span>
-        </DropdownToggle>
-        <Collapse tag={DropdownMenu} left small open={this.state.visible}>
-          {/* <DropdownItem tag={Link} to="user-profile">
-            <i className="material-icons">&#xE7FD;</i> Status Online
-          </DropdownItem>
-          <DropdownItem tag={Link} to="edit-user-profile">
-            <i className="material-icons">&#xE8B8;</i> Settings
-          </DropdownItem> */}
-          {/* <DropdownItem tag={Link} to="file-manager-list">
-            <i className="material-icons">&#xE2C7;</i> Files
-          </DropdownItem> */}
-          {/* <DropdownItem tag={Link} to="transaction-history">
-            <i className="material-icons">&#xE896;</i> Transactions
-          </DropdownItem> */}
-          <DropdownItem divider />
-          <DropdownItem tag={Link} to="/login" className="text-danger">
-            <i className="material-icons text-danger">&#xE879;</i> Logout
-          </DropdownItem>
-        </Collapse>
+      
+        <span className="d-none d-md-inline-block text-nowrap px-3 pt-6" style={{cursor:'pointer',marginTop:'20px'}} >Welcom to GST. <span style={{marginLeft:'15px'}}>Log out</span> </span>
+
+
       </NavItem>
     );
   }

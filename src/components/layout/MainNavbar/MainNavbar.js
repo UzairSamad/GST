@@ -10,7 +10,7 @@ import NavbarToggle from "./NavbarToggle";
 const MainNavbar = ({ layout, stickyTop }) => {
   const classes = classNames(
     "main-navbar",
-    "bg-white",
+    // "bg-white",
     stickyTop && "sticky-top"
   );
 

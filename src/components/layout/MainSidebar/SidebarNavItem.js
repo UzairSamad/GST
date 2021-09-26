@@ -6,14 +6,7 @@ import { NavItem, NavLink } from "shards-react";
 const SidebarNavItem = ({ item, count }) => {
   console.log(item, count, "itemitemitemitem")
 
-  let amount = 0
-  count.map((res, data) => {
-    if (res.orderDetails.readStatus == "false") {
-      amount = amount + 1
-    }
-  })
-
-  console.log(amount, "AAAAAAAAAAAAAAAa");
+ 
   return (
     <NavItem>
 
@@ -30,7 +23,7 @@ const SidebarNavItem = ({ item, count }) => {
               {item.title}
             </span>
             <span style={{ marginLeft: "30px" }}>
-              {item.title == "Order Status" && amount !== 0 ? `${amount} new ` : null}
+              {/* {item.title == "Order Status" && amount !== 0 ? `${amount} new ` : null} */}
             </span>
           </>
         }

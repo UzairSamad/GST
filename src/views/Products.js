@@ -15,16 +15,74 @@ import {
 
 import PageTitle from "./components/PageTitle";
 import CustomTable from "./components/CustomTable.js";
-import { AppContext } from '../AppContext'
 import Loader from './components/Loader'
-import { delete_product } from "../WebApiServices/WebServices";
 
 const Products = (props) => {
-  const tableHeader = ['Image', 'Product Name', 'Description', 'Category', 'Price']
-  const tableDisplayData = ['image', 'name', 'description', 'category', 'price']
+  const tableHeader = ['Guide', 'First Name', 'Test Version', 'Belived Impaired', 'Full Attention', 'Test Start Time', 'Classic (/6)Score', 'GST (/12)Score', 'Z_TAP_ART', 'Z_TAPED_AED', 'Z_EST_ART', 'Z_EST_TIM', 'Z_FOL_PNT', 'Z_EST_AED', 'Z_BAL_LLD', 'Z_BAL_RLD', 'Z_TAP_PWS', 'Z_FOL_AED', 'Z_FOL_ERRCT', 'TAP_ART', 'EST_ART', 'EST_TIM', 'FOL_COS', 'BAL_DIS', 'BAL_LLD', 'BAL_RLD', 'BAL_LeftAverage', 'BAL_RightAverage', 'BAL_TotalAverage', 'TAP_Sum_of_React_Time', 'TAP_Sum_ of Error Distance', 'TAP_Total_Shapes_Shown', 'TAP_Total_Target_Shapes', 'TAP_WSC', 'TAP_Sum_of_Reaction_Time', 'EST_Sum_of_Error_Distance', 'EST_Total_Circles_Shown', 'FOL_Total_Squares_Shown', 'FOL_Square_Count_Error', 'TAP_AED', 'TAP_TTC', 'TAP_CTC', 'TAP_PWS', 'FOL_CSE', 'FOL_PNT', 'FOL_AED', 'FOL_TD', 'FOL_TOT', 'FOL_TDIS', 'EST_TEC', 'EST_TEE', 'EST_AED', 'EST_AED', 'EST_TSC', 'EST_TTC', 'Tap Task Detail', 'Follow Task Detail', 'Estimate Task Detail', 'Balance Task Detail', 'Get Json Data']
+  const tableDisplayData = [
+    'guide',
+    'fname',
+    'testVersion',
+    'believedImpaired',
+    'fullAttention',
+    'testStart',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'classicScore',
+    'detailButton',
+    'detailButton',
+    'detailButton',
+    'detailButton',
+    'detailButton',
+
+  ]
   const [searchText, setSearchText] = useState('')
-  const context = useContext(AppContext)
-  const { getProduct, isLoading, products, deleteProduct, getCategories } = context
   const initialData = {
     name: '',
     price: '',
@@ -32,39 +90,301 @@ const Products = (props) => {
   }
 
 
-  useEffect(() => {
-    getProduct()
-    getCategories()
+  let products = [
+    {
+      guide: 'Revamped813F8050-1940-407E-9478-6765CFA4776D',
+      fname: 'Jhon',
+      testVersion: 'Classic',
+      believedImpaired: 'Classic',
+      fullAttention: 'True',
+      testStart: '2021-08-10 10:08:54 +0000',
+      classicScore: '68.22',
+      gsTScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      detailButton: 'Button',
+      detailButton: 'Button1',
 
-  }, [])
+
+
+    },
+    {
+      guide: 'Revamped813F8050-1940-407E-9478-6765CFA4776D',
+      fname: 'Jhon',
+      testVersion: 'Classic',
+      believedImpaired: 'Classic',
+      fullAttention: 'True',
+      testStart: '2021-08-10 10:08:54 +0000',
+      classicScore: '68.22',
+      gsTScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      detailButton: 'Button',
+      detailButton: 'Button1',
+    },
+    {
+      guide: 'Revamped813F8050-1940-407E-9478-6765CFA4776D',
+      fname: 'Jhon',
+      testVersion: 'Classic',
+      believedImpaired: 'Classic',
+      fullAttention: 'True',
+      testStart: '2021-08-10 10:08:54 +0000',
+      classicScore: '68.22',
+      gsTScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      detailButton: 'Button',
+    },
+    {
+      guide: 'Revamped813F8050-1940-407E-9478-6765CFA4776D',
+      fname: 'Jhon',
+      testVersion: 'Classic',
+      believedImpaired: 'Classic',
+      fullAttention: 'True',
+      testStart: '2021-08-10 10:08:54 +0000',
+      classicScore: '68.22',
+      gsTScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      detailButton: 'Button',
+    },
+    {
+      guide: 'Revamped813F8050-1940-407E-9478-6765CFA4776D',
+      fname: 'Jhon',
+      testVersion: 'Classic',
+      believedImpaired: 'Classic',
+      fullAttention: 'True',
+      testStart: '2021-08-10 10:08:54 +0000',
+      classicScore: '68.22',
+      gsTScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      detailButton: 'Button',
+    },
+    {
+      guide: 'Revamped813F8050-1940-407E-9478-6765CFA4776D',
+      fname: 'Jhon',
+      testVersion: 'Classic',
+      believedImpaired: 'Classic',
+      fullAttention: 'True',
+      testStart: '2021-08-10 10:08:54 +0000',
+      classicScore: '68.22',
+      gsTScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      detailButton: 'Button',
+    },
+    {
+      guide: 'Revamped813F8050-1940-407E-9478-6765CFA4776D',
+      fname: 'Jhon',
+      testVersion: 'Classic',
+      believedImpaired: 'Classic',
+      fullAttention: 'True',
+      testStart: '2021-08-10 10:08:54 +0000',
+      classicScore: '68.22',
+      gsTScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      classicScore: '68.22',
+      detailButton: 'Button',
+    },
+  ]
 
   return (
     <Container fluid className="main-content-container px-4">
       {/* Page Header */}
-      <Loader isloading={isLoading} />
-      <Row noGutters className="page-header py-4">
-        <Col md="4">
-          <PageTitle sm="4" title="Products" className="text-sm-left" />
+      <Row noGutters className="page-header py-4" style={{backgroundColor:'#fff',marginBottom:'30px',marginTop:'30px',width:'98%',height:'100px'}}>
+        <Col md="4" style={{marginLeft:'2%'}}>
+       <div style={{fontSize:'22px',fontWeight:'100'}}>Data Tables</div>
+       <div style={{fontWeight:'100'}}>Dashboard</div>
         </Col>
-        <Col md="4">
-          <FormInput
-            id="feEmailAddress"
-            type="email"
-            placeholder="Search"
-            onChange={(e) => setSearchText(e.target.value)}
-            value={searchText}
-          />
+        <Col md="3">
         </Col>
-        <Col md="2">
+        <Col md="1">
         </Col>
-        <Col md="2">
-          <Button onClick={_ => props.history.push({ pathname: '/add-editproduct', state: { title: "Add Product", data: initialData } })} theme="primary" className="mb-2 mr-1" style={{ width: '85%' }}>
-            Add
-         </Button>
+        <Col md="2" style={{flexDirection:'row',display:'flex',marginLeft:'13%',marginTop:'-5px'}}>
+        
+        </Col>
+      </Row>
+      <Row noGutters className="page-header py-4" style={{backgroundColor:'#fff',marginBottom:'30px',marginTop:'30px',width:'98%',height:'70px'}}>
+        <Col md="4" style={{marginLeft:'2%'}}>
+       <div>GST Record</div>
+        </Col>
+        <Col md="3">
+        </Col>
+        <Col md="1">
+        </Col>
+        <Col md="2" style={{flexDirection:'row',display:'flex',marginLeft:'13%',marginTop:'-5px'}}>
+          <Button className="mb-2 mr-1" style={{ width: '95%',backgroundColor:'#1ab394' }}>
+            Get JSON
+          </Button>
+          <Button  className="mb-2 mr-1" style={{ width: '95%',backgroundColor:'#1ab394'  }}>
+            Get Excel
+          </Button>
         </Col>
       </Row>
 
-      <CustomTable titleEdit='Edit Product' searchText={searchText} handleDelete={deleteProduct} props={props} onEditNavigate='/add-editproduct' tableHead={tableHeader} tableBody={products} tableDisplayData={tableDisplayData} />
+      <CustomTable titleEdit='Edit Product' searchText={searchText} props={props} onEditNavigate='/add-editproduct' tableHead={tableHeader} tableBody={products} tableDisplayData={tableDisplayData} />
     </Container>
   );
 }

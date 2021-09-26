@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
+import {
+    Container, Row, Col, Card, CardHeader, CardBody, Button,
+} from "shards-react";
 
 import PageTitle from "./PageTitle";
 
@@ -15,13 +17,13 @@ const CustomTable = ({ tableHead, tableBody, tableDisplayData, onEditNavigate, p
 
         setTableData(tableBody)
 
-        if (searchText.length > 0) { 
+        if (searchText.length > 0) {
             const results = tableData.filter(item => {
-				return item.name.toLowerCase().includes(searchText.toLowerCase());
-			});
+                return item.name.toLowerCase().includes(searchText.toLowerCase());
+            });
             setTableData(results)
         }
-    }, [searchText,tableBody])
+    }, [searchText, tableBody])
 
     const onDelete = (data) => {
         handleDelete(data._id)
@@ -32,33 +34,19 @@ const CustomTable = ({ tableHead, tableBody, tableDisplayData, onEditNavigate, p
             <Row>
                 <Col>
                     <Card small className="mb-4">
-                        <CardBody className="p-0 pb-3">
+                        <CardBody className="p-0 pb-3" style={{ overflow: 'auto' }}>
                             <table className="table mb-0">
                                 <thead className="bg-light">
                                     <tr>
                                         {
                                             tableHead.map(val => {
                                                 return (
-                                                    <th scope="col" className="border-0">
+                                                    <th scope="col" className="border-0" style={{fontSize:'10px'}}>
                                                         {val}
                                                     </th>
 
                                                 )
                                             })
-
-                                        }
-                                        {tableDisplayData.length > 2 ?
-
-                                            <th scope="col" colspan={2}
-                                                style={{ textAlign: 'center' }}
-                                                className="border-0">
-                                                {'Actions'}
-                                            </th>
-                                            :
-                                            <th scope="col" colspan={2}
-                                                className="border-0">
-                                                {'Actions'}
-                                            </th>
 
                                         }
 
@@ -72,19 +60,27 @@ const CustomTable = ({ tableHead, tableBody, tableDisplayData, onEditNavigate, p
                                                 <tr style={{ cursor: 'pointer' }} >
                                                     {
                                                         tableDisplayData.map(val => {
+                                                            console.log(val, 'row[val]row[val]')
                                                             return (
-                                                                val !== 'image' ? <td style={{ paddingTop: '30px', minWidth: '20px' }}>{row[val]}</td>
-                                                                    : <td style={{ minWidth: '20px' }} ><img style={{ height: "55px", width: '85px' }} src={row[val]} /></td>
+                                                                <>
+                                                                {
+                                                                    val == 'detailButton' ?
+                                                                    <td style={{ paddingTop: '30px', minWidth: '20px' }}>
+                                                                        <Button style={{backgroundColor:'#1ab394'}} >
+                                                                            Detail 
+                                                                        </Button>
+                                                                    </td>
+                                                                    : 
+                                                                    <td style={{ paddingTop: '30px', minWidth: '20px',fontSize:'12px',width:'10px' }}>
+                                                                        {row[val]}
+                                                                    </td>
+                                                                    }
+                                                                   
+                                                                </>
+
                                                             )
                                                         })
                                                     }
-                                                    <td onClick={_ => handleEdit(row)} style={{ paddingTop: '30px', textAlign: 'center', cursor: 'pointer' }}>
-                                                        <i class="material-icons">edit</i>
-                                                    </td>
-                                                    <td onClick={_ => onDelete(row)} style={{ paddingTop: '30px', cursor: 'pointer' }}>
-                                                        <i class="material-icons">delete</i>
-
-                                                    </td>
                                                 </tr>
                                             )
                                         })

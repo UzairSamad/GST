@@ -3,11 +3,9 @@ import { Nav } from "shards-react";
 
 import SidebarNavItem from "./SidebarNavItem";
 import { Store } from "../../../flux";
-import { AppContext } from "../../../AppContext";
 
 class SidebarNavItems extends React.Component {
 
-  static contextType = AppContext
   constructor(props) {
     super(props)
     this.state = {

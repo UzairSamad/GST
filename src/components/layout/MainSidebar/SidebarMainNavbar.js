@@ -28,7 +28,7 @@ class SidebarMainNavbar extends React.Component {
           <NavbarBrand
             className="w-100 mr-0"
             href="#"
-            style={{ lineHeight: "25px" ,backgroundColor:'#43425D',color:'#fffff'}}
+            style={{ lineHeight: "25px", backgroundColor: '#2f4050', color: '#fffff' }}
           >
             <div className="d-table m-auto">
               {/* <img
@@ -39,9 +39,8 @@ class SidebarMainNavbar extends React.Component {
                 alt="Shards Dashboard"
               /> */}
               {!hideLogoText && (
-                <span style={{color:'#fff',fontSize:'18px'}} className="d-none d-md-inline ml-1">
-                 Mimi's Hair Saloon 
-                </span>
+                <span style={{ color: '#fff', fontSize: '18px' ,textAlign:'left'}} className="d-none d-md-inline ml-1">
+                  GST                </span>
               )}
             </div>
           </NavbarBrand>
