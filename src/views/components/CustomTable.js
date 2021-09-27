@@ -71,7 +71,7 @@ const CustomTable = ({ tableHead, tableBody, tableDisplayData, onEditNavigate, p
                                                                         </Button>
                                                                     </td>
                                                                     : 
-                                                                    <td style={{ paddingTop: '30px', minWidth: '20px',fontSize:'12px',width:'10px' }}>
+                                                                    <td style={{ minWidth:val == 'guide'?'120px':val == 'testStart' ? '180px':'20px', paddingTop: '30px',fontSize:'12px',width:'10px' }}>
                                                                         {row[val]}
                                                                     </td>
                                                                     }

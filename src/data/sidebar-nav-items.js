@@ -14,7 +14,7 @@ export default function() {
     {
       title: "User Graph",
       htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/products",
+      to: "/userGraph",
     },
    
    
