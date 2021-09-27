@@ -9,7 +9,7 @@ export default function() {
     {
       title: "Coefficient",
       htmlBefore: '<i class="material-icons">vertical_split</i>',
-      to: "customer-support",
+      to: "/coefficent",
     },
     {
       title: "User Graph",

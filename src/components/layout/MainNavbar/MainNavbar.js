@@ -11,7 +11,7 @@ const MainNavbar = ({ layout, stickyTop }) => {
   const classes = classNames(
     "main-navbar",
     // "bg-white",
-    stickyTop && "sticky-top"
+    // stickyTop && "sticky-top"
   );
 
   return (

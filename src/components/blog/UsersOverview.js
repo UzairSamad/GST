@@ -5,228 +5,162 @@ import { Row, Col, Card, CardHeader, CardBody, Button } from "shards-react";
 import RangeDatePicker from "../common/RangeDatePicker";
 import Chart from "../../utils/chart";
 
-class UsersOverview extends React.Component {
-  constructor(props) {
-    super(props);
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated"
 
-    this.canvasRef = React.createRef();
-  }
+const USerOverView = ()=>{
+  am4core.useTheme(am4themes_animated);
+// Themes end
 
-  componentDidMount() {
-    const chartOptions = {
-      ...{
-        responsive: true,
-        legend: {
-          position: "top"
-        },
-        elements: {
-          line: {
-            // A higher value makes the line look skewed at this ratio.
-            tension: 0.3
-          },
-          point: {
-            radius: 0
-          }
-        },
-        scales: {
-          xAxes: [
-            {
-              gridLines: false,
-              ticks: {
-                callback(tick, index) {
-                  // Jump every 7 values on the X axis labels to avoid clutter.
-                  return index % 7 !== 0 ? "" : tick;
-                }
-              }
-            }
-          ],
-          yAxes: [
-            {
-              ticks: {
-                suggestedMax: 45,
-                callback(tick) {
-                  if (tick === 0) {
-                    return tick;
-                  }
-                  // Format the amounts using Ks for thousands.
-                  return tick > 999 ? `${(tick / 1000).toFixed(1)}K` : tick;
-                }
-              }
-            }
-          ]
-        },
-        hover: {
-          mode: "nearest",
-          intersect: false
-        },
-        tooltips: {
-          custom: false,
-          mode: "nearest",
-          intersect: false
-        }
-      },
-      ...this.props.chartOptions
-    };
 
-    const BlogUsersOverview = new Chart(this.canvasRef.current, {
-      type: "LineWithLine",
-      data: this.props.chartData,
-      options: chartOptions
-    });
 
-    // They can still be triggered on hover.
-    const buoMeta = BlogUsersOverview.getDatasetMeta(0);
-    buoMeta.data[0]._model.radius = 0;
-    buoMeta.data[
-      this.props.chartData.datasets[0].data.length - 1
-    ]._model.radius = 0;
+let chart = am4core.create("chartdiv", am4charts.XYChart);
+chart.paddingRight = 20;
 
-    // Render the chart.
-    BlogUsersOverview.render();
-  }
-
-  render() {
-    const { title } = this.props;
-    return (
-      <Card small className="h-95">
-        <CardHeader className="border-bottom">
-          <h6 className="m-0">{title}</h6>
-        </CardHeader>
-        <CardBody className="pt-0">
-          <Row className="border-bottom py-2 bg-light">
-            <Col sm="6" className="d-flex mb-2 mb-sm-0">
-              <RangeDatePicker />
-            </Col>
-            <Col>
-              <Button
-                size="sm"
-                className="d-flex btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0"
-              >
-                View Full Report &rarr;
-              </Button>
-            </Col>
-          </Row>
-          <canvas
-            height="65"
-            ref={this.canvasRef}
-            style={{ maxWidth: "100% !important" }}
-          />
-        </CardBody>
-      </Card>
-    );
-  }
+let data = [];
+let visits = 10;
+for (var i = 1; i < 500; i++) {
+  visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+  data.push({ date: new Date(2018, 0, i, 0,0,0,0), value: visits });
 }
 
-UsersOverview.propTypes = {
-  /**
-   * The component's title.
-   */
-  title: PropTypes.string,
-  /**
-   * The chart dataset.
-   */
-  chartData: PropTypes.object,
-  /**
-   * The Chart.js options.
-   */
-  chartOptions: PropTypes.object
-};
+chart.data = data;
 
-UsersOverview.defaultProps = {
-  title: "Users Overview",
-  chartData: {
-    labels: Array.from(new Array(30), (_, i) => (i === 0 ? 1 : i)),
-    datasets: [
-      {
-        label: "Current Month",
-        fill: "start",
-        data: [
-          500,
-          800,
-          320,
-          180,
-          240,
-          320,
-          230,
-          650,
-          590,
-          1200,
-          750,
-          940,
-          1420,
-          1200,
-          960,
-          1450,
-          1820,
-          2800,
-          2102,
-          1920,
-          3920,
-          3202,
-          3140,
-          2800,
-          3200,
-          3200,
-          3400,
-          2910,
-          3100,
-          4250
-        ],
-        backgroundColor: "rgba(0,123,255,0.1)",
-        borderColor: "rgba(0,123,255,1)",
-        pointBackgroundColor: "#ffffff",
-        pointHoverBackgroundColor: "rgb(0,123,255)",
-        borderWidth: 1.5,
-        pointRadius: 0,
-        pointHoverRadius: 3
-      },
-      {
-        label: "Past Month",
-        fill: "start",
-        data: [
-          380,
-          430,
-          120,
-          230,
-          410,
-          740,
-          472,
-          219,
-          391,
-          229,
-          400,
-          203,
-          301,
-          380,
-          291,
-          620,
-          700,
-          300,
-          630,
-          402,
-          320,
-          380,
-          289,
-          410,
-          300,
-          530,
-          630,
-          720,
-          780,
-          1200
-        ],
-        backgroundColor: "rgba(255,65,105,0.1)",
-        borderColor: "rgba(255,65,105,1)",
-        pointBackgroundColor: "#ffffff",
-        pointHoverBackgroundColor: "rgba(255,65,105,1)",
-        borderDash: [3, 3],
-        borderWidth: 1,
-        pointRadius: 0,
-        pointHoverRadius: 2,
-        pointBorderColor: "rgba(255,65,105,1)"
-      }
-    ]
+let popup = chart.openPopup("<div>Click on plot area to add points<br>Drag bullets to change values<br>Double click on bullet to remove</div>");
+popup.top = 60;
+popup.right = 30;
+popup.defaultStyles = false;
+
+
+let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.renderer.grid.template.location = 0;
+dateAxis.renderer.minGridDistance = 60;
+
+let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+//valueAxis.tooltip.disabled = true;
+valueAxis.renderer.minWidth = 35;
+
+let series = chart.series.push(new am4charts.LineSeries());
+series.dataFields.dateX = "date";
+series.dataFields.valueY = "value";
+//series.tooltipText = "{valueY}";
+series.tooltip.pointerOrientation = "vertical";
+series.tooltip.background.fillOpacity = 0.5;
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.xAxis = dateAxis;
+chart.cursor.behavior = "none";
+
+let scrollbarX = new am4core.Scrollbar();
+chart.scrollbarX = scrollbarX;
+
+let newSeries;
+let addingPointsDisabled = false;
+
+addSeries();
+
+function addSeries() {
+  newSeries = chart.series.push(new am4charts.LineSeries())
+  newSeries.data = []
+  newSeries.dataFields.dateX = "date";
+  newSeries.dataFields.valueY = "newValue";
+  newSeries.interpolationDuration = 0;
+
+  let bullet = newSeries.bullets.push(new am4charts.CircleBullet());
+  bullet.draggable = true;
+
+  bullet.events.on("dragged", function(event) {
+    let bullet = event.target;
+            
+    let x = bullet.pixelX; 
+    //x = dateAxis.getX(bullet.dataItem, "dateX"); //  uncomment this line if you want to allow draggin bullets only along y axis
+
+    bullet.moveTo({ x: x, y: bullet.pixelY }, undefined, undefined, true);
+    bullet.dataItem.valueY = valueAxis.yToValue(bullet.pixelY);
+    bullet.dataItem.dataContext.newValue = bullet.dataItem.valueY;
+
+    // remove the following three lines if you want to allow draggin bullets only along y axis
+    bullet.dataItem.dateX = dateAxis.xToValue(bullet.pixelX);    
+    bullet.dataItem.dataContext.date = bullet.dataItem.dateX;    
+    dateAxis.postProcessSeriesDataItem(bullet.dataItem);
+  })
+
+  bullet.events.on("down", function(event) {
+    addingPointsDisabled = true;
+
+    chart.cursor.triggerMove(
+      { x: series.tooltipX, y: series.tooltipY },
+      "hard"
+    ); // sticks cursor to the point
+
+  })
+
+
+  bullet.events.on("dragstop", function(event) {
+
+    let bullet = event.target;
+
+    chart.cursor.triggerMove(
+      { x: series.tooltipX, y: series.tooltipY },
+      "none"
+    ); // enables mouse following again
+
+    addingPointsDisabled = false;
+  })
+
+  bullet.events.on("doublehit", function(event) {
+    addingPointsDisabled = false;
+    let dataItem = event.target.dataItem;
+    let dataContext = dataItem.dataContext;
+    newSeries.data.splice(newSeries.data.indexOf(dataContext), 1);
+    newSeries.invalidateData();
+
+    chart.cursor.triggerMove(
+      { x: series.tooltipX, y: series.tooltipY },
+      "none"
+    ); // enables mouse following again    
+  })
+}
+
+
+let interaction = am4core.getInteraction();
+
+interaction.events.on("up", function(event) {
+  if (newSeries && !addingPointsDisabled && chart.cursor.visible) {
+    let date = series.tooltipDataItem.dateX;
+    let point = am4core.utils.documentPointToSprite(event.pointer.point, chart.seriesContainer);
+    let value = valueAxis.yToValue(point.y);
+    if (value > valueAxis.min && value < valueAxis.max) {
+      newSeries.data.push({ date: date, newValue: value });
+      sortData();
+      newSeries.invalidateData();
+    }
   }
-};
+})
 
-export default UsersOverview;
+function sortData() {
+  newSeries.data.sort(function(a, b) {
+    let atime = a.date.getTime();
+    let btime = b.date.getTime();
+
+    if (atime < btime) {
+      return -1;
+    }
+    else if (atime == btime) {
+      return 0;
+    }
+    else {
+      return 1;
+    }
+  })
+}
+
+return(
+
+  <div id='chartdiv'> </div>
+)
+}
+
+
+export default USerOverView
