@@ -41,11 +41,7 @@ const Login = (props) => {
 
 
 
-  const handleRember = (e, fruit) => {
-    const newState = {};
-    newState[fruit] = !state[fruit];
-    setState({ ...state, ...newState });
-  }
+
 
   const handleSubmit = async () => {
     props.history.push('/dashboard')

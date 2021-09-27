@@ -16,8 +16,27 @@ import {
 import PageTitle from "./components/PageTitle";
 import CustomTable from "./components/CustomTableCoefficent.js";
 import Loader from './components/Loader'
+import axios from 'axios'
 
 const Products = (props) => {
+  const [isLoading,setIsloading] = useState(false)
+
+  useEffect(() => {
+    setIsloading(true)
+    axios
+      .get(`https://opentdb.com/api.php?amount=10&category=23&difficulty=easy&type=boolean&encode=base64`)
+      .then(response => {
+        setTimeout(() => {
+          setIsloading(false)
+        }, 1000);
+        console.log(response,'ressssssssss')
+      })
+      .catch(error => {
+        setIsloading(false)
+        console.log(error,'ressssssssss')
+      });
+}, [])
+
   const tableHeader = ['Name', 'T1ART', 'T1AED', 'T1PWS', 'T2ART', 'T2AED', 'T2TIME', 'T2ERRCT', 'T2PERNOT', 'T3ERRCT', 'T4TOTAL', 'T4RIGHT', 'T3LEFT', 'EDIT']
   const tableDisplayData = [
     'guide',
@@ -77,6 +96,8 @@ const Products = (props) => {
 
   return (
     <Container fluid className="main-content-container px-4">
+              <Loader isloading={isLoading} />
+
       {/* Page Header */}
       <Row noGutters className="page-header py-4" style={{ backgroundColor: '#fff', marginBottom: '30px', marginTop: '30px', width: '98%', height: '100px' }}>
         <Col md="4" style={{ marginLeft: '2%' }}>

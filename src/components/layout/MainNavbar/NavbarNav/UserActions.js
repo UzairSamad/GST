@@ -22,16 +22,14 @@ export default class UserActions extends React.Component {
   }
 
   toggleUserActions() {
-    this.setState({
-      visible: !this.state.visible
-    });
+    window.location.href = '#/login'
   }
 
   render() {
     return (
-      <NavItem tag={Dropdown} caret toggle={this.toggleUserActions}>
-      
-        <span className="d-none d-md-inline-block text-nowrap px-3 pt-6" style={{cursor:'pointer',marginTop:'20px'}} >Welcom to GST. <span style={{marginLeft:'15px'}}>Log out</span> </span>
+      <NavItem  >
+
+        <span onClick={_=>this.toggleUserActions()} className="d-none d-md-inline-block text-nowrap px-3 pt-6" style={{ cursor: 'pointer', marginTop: '20px' }} >Welcom to GST. <span style={{ marginLeft: '15px' }}>Log out</span> </span>
 
 
       </NavItem>

@@ -6,7 +6,7 @@ import { DefaultLayout } from "./layouts";
 
 // Route Views
 import Dashboard from "./views/Dashboard Tables.js";
-import Products from "./views/Products";
+import Coefficent from "./views/Coefficent";
 import UserGraph from "./views/UserGraph";
 import Login from "./views/Login";
 
@@ -30,7 +30,7 @@ export default [
   {
     path: "/coefficent",
     layout: DefaultLayout,
-    component: Products
+    component: Coefficent
   },
   {
     path: "/userGraph",
